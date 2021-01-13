@@ -2,7 +2,7 @@ package clases;
 
 public class Ticket {
 
-public String codigoTicket;
+public int codigoTicket;
 
 public String DNIpaciente;
 
@@ -13,11 +13,11 @@ public String descripcion;
 public String respuesta;
 
 
+public Ticket() {}
 
+public Ticket(int tamañoLista,String DNIpaciente,String DNIdoctor,String descripcion,String respuesta) {
 
-public Ticket(String codigoTicket,String DNIpaciente,String DNIdoctor,String descripcion,String respuesta) {
-
-	this.codigoTicket=codigoTicket;
+	this.codigoTicket=tamañoLista;
 	this.DNIpaciente=DNIpaciente;
 	this.DNIdoctor=DNIdoctor;
 	this.descripcion=descripcion;
@@ -25,13 +25,25 @@ public Ticket(String codigoTicket,String DNIpaciente,String DNIdoctor,String des
 
 }
 
+// este es el Json que se generará al final
+public String toString() {
+	String salida="ticket:";
+	salida="\ncodigodeTicket"+codigoTicket;
+	salida+="\nDNIdepacientet"+DNIpaciente;
+	salida+="\nDNIdoctor"+DNIdoctor;
+	salida+="\nDescripcion"+descripcion;
+	salida+="\nRespuesta"+respuesta;
+	salida += "\n";
+	return salida;
+}
 
-public String getCodigoTicket() {
+
+public int getCodigoTicket() {
 	return codigoTicket;
 }
 
 
-public void setCodigoTicket(String codigoTicket) {
+public void setCodigoTicket(int codigoTicket) {
 	this.codigoTicket = codigoTicket;
 }
 
