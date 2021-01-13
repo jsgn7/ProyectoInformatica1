@@ -1,58 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package application;
+ package application;
 
-import java.io.IOException;
+import controlador.controladorLogin;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import controlador.FXMLDocumentController;
 
-/**
- *
- * @author hoxha
- */
 public class MainLogin extends Application {
-   private Stage primaryStage;
-   
+	
+	public void start(Stage primaryStage) {
+		try {
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("/vista/Login.fxml"));
+			controladorLogin control=new controladorLogin();
 
-    @Override
-    public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage; // connect primary stage
-        
-        mainWindow();
-    }
+            loader.setController(control);
+            Parent root=loader.load();
 
-    // main window
-    public void mainWindow() {
-        try {
-            // view
-            FXMLLoader loader = new FXMLLoader(MainLogin.class.getResource("FXMLDocument.fxml"));
-            AnchorPane pane = loader.load();
-
-            // controller
-            FXMLDocumentController mainWindowController = loader.getController();
-            mainWindowController.setMain(this);
-
-            // scene on stage
-            Scene scene = new Scene(pane);
-            primaryStage.setScene(scene);
-            primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();	
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
 }
+

@@ -2,8 +2,6 @@ package controlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import clases.Personas;
 import clases.Sensores;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

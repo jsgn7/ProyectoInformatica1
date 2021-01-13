@@ -1,0 +1,20 @@
+[
+  {
+    "nombreUsuario": "Paco",
+    "pass": "12",
+    "edad": 0,
+    "rol": "Medico"
+  },
+  {
+    "nombreUsuario": "Javier",
+    "pass": "1234",
+    "edad": 0,
+    "rol": "Paciente"
+  },
+  {
+    "nombreUsuario": "Pedro",
+    "pass": "14",
+    "edad": 0,
+    "rol": "Medico"
+  }
+]
