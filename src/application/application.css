@@ -1,15 +1,14 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
-.parent{
-	-fx-backgroung-color: #FF1100;
-	
-	}
-.sidebar{
-	-fx-text-fill: white;
-	
-	}	
-.forgetLabel{
-	-fx-text-fill: #fffff;
-	-fx_underline: true;
-	}	
-	
+.barraLateral{
+	-fx-background-color : white;
+}
+
+.panelPrincipal{
+	-fx-background-color: aquamarine;
+}
+
+.botonLoginRegistro{
+	-fx-background-color: white;
+	-fx-background-radius: 10px;
+}

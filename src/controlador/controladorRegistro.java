@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
@@ -18,6 +19,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -36,23 +39,24 @@ public class controladorRegistro {
     private JFXTextField NombreUsuario;
 
     @FXML
-    private JFXTextField Rol;
+    private JFXComboBox<String> Rol;
 
     @FXML
     private JFXButton confirmar;
-
+    
+    ObservableList<String> roles = FXCollections.observableArrayList("Medico","Paciente");
+    
     @FXML
     void registro(ActionEvent event) {
     	Vector<Usuario> usuarios = desserializarJsonAArray();
-    	Usuario usuario = new Usuario(NombreUsuario.getText(),Password.getText(),Rol.getText());
+    	Usuario usuario = new Usuario(NombreUsuario.getText(), Password.getText(), Rol.getSelectionModel().getSelectedItem().toString());
     	usuarios.add(usuario);
     	Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
-	
-		try(FileWriter writer = new FileWriter("empleados.json")){
-			prettyGson.toJson(usuarios, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    	try (FileWriter writer = new FileWriter("usuarios.json",false)){
+    		prettyGson.toJson(usuarios,writer);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
     
     public Vector<Usuario> desserializarJsonAArray(){
@@ -71,10 +75,6 @@ public class controladorRegistro {
 
     @FXML
     void initialize() {
-        assert Password != null : "fx:id=\"Password\" was not injected: check your FXML file 'Registro.fxml'.";
-        assert NombreUsuario != null : "fx:id=\"NombreUsuario\" was not injected: check your FXML file 'Registro.fxml'.";
-        assert Rol != null : "fx:id=\"Rol\" was not injected: check your FXML file 'Registro.fxml'.";
-        assert confirmar != null : "fx:id=\"confirmar\" was not injected: check your FXML file 'Registro.fxml'.";
-
+    	Rol.setItems(roles);
     }
 }

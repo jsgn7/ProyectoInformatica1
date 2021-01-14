@@ -12,8 +12,8 @@
     "rol": "Paciente"
   },
   {
-    "nombreUsuario": "Pedro",
-    "pass": "14",
+    "nombreUsuario": "Juan",
+    "pass": "8888",
     "edad": 0,
     "rol": "Medico"
   }

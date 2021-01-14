@@ -1,12 +1,20 @@
 [
-	{
-		"nombreUsuario": "Paco",
-		"pass": "12",
-		"rol": "Medico"
-	},
-	{
-		"nombreUsuario": "Javier",
-		"pass": "1234",
-		"rol": "Paciente"
-	}
+  {
+    "nombreUsuario": "Gonzalo",
+    "pass": "hola",
+    "edad": 0,
+    "rol": "Medico"
+  },
+  {
+    "nombreUsuario": "Javier",
+    "pass": "1234",
+    "edad": 0,
+    "rol": "Medico"
+  },
+  {
+    "nombreUsuario": "Pedro",
+    "pass": "adios",
+    "edad": 0,
+    "rol": "Paciente"
+  }
 ]

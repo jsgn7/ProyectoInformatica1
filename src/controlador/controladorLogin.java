@@ -91,20 +91,20 @@ public class controladorLogin {
 				try {
 					if (usuarios.get(i-1).getRol().equals("Paciente")) {
 
-						FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/vista/Visualizar_ticket_paciente.fxml"));
-						controlador_visu_ti_paciente control2 = new controlador_visu_ti_paciente();
+						FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/vista/MenuSeleccion.fxml"));
+						controladorMenuSeleccionPaciente control3 = new controladorMenuSeleccionPaciente();
 
-						loader2.setController(control2);
-						Parent root2 = loader2.load();
+						loader3.setController(control3);
+						Parent root3 = loader3.load();
 						
 						Stage stage = new Stage();
 						
-						stage.setScene(new Scene(root2));
+						stage.setScene(new Scene(root3));
 						stage.show();
 					}else {
 
-						FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/vista/Visualizar_ticket_clinico.fxml"));
-						controlador_visu_ti_clinico control3 = new controlador_visu_ti_clinico();
+						FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/vista/MenuSeleccion.fxml"));
+						controladorMenuSeleccionMedicos control3 = new controladorMenuSeleccionMedicos();
 
 						loader3.setController(control3);
 						Parent root3 = loader3.load();
