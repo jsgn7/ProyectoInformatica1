@@ -30,15 +30,15 @@ public class controladorMenuSeleccionMedicos {
     @FXML
     void clickSensores(ActionEvent event) {
     	try {
-			FXMLLoader loader2=new FXMLLoader(getClass().getResource("/vista/sensorespaciente.fxml"));
-			controladorsensorpaciente control2=new controladorsensorpaciente();
+			FXMLLoader loaderSensorPac=new FXMLLoader(getClass().getResource("/vista/sensorespaciente.fxml"));
+			controladorsensorpaciente controlSensorPac=new controladorsensorpaciente();
 
-            loader2.setController(control2);
-            Parent root2=loader2.load();
+            loaderSensorPac.setController(controlSensorPac);
+            Parent rootSensorPac=loaderSensorPac.load();
             
             Stage stage = new Stage();
 
-            stage.setScene(new Scene(root2));
+            stage.setScene(new Scene(rootSensorPac));
             stage.show();	
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -48,15 +48,15 @@ public class controladorMenuSeleccionMedicos {
     @FXML
     void clickSensoresPuertas(ActionEvent event) {
     	try {
-			FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/vista/controlpuertas.fxml"));
-			controladorpuertas control3 = new controladorpuertas();
+			FXMLLoader loaderControlPuertas = new FXMLLoader(getClass().getResource("/vista/controlpuertas.fxml"));
+			controladorpuertas controlControlPuertas = new controladorpuertas();
 
-            loader3.setController(control3);
-            Parent root3 = loader3.load();
+            loaderControlPuertas.setController(controlControlPuertas);
+            Parent rootControlPuertas = loaderControlPuertas.load();
             
             Stage stage = new Stage();
 
-            stage.setScene(new Scene(root3));
+            stage.setScene(new Scene(rootControlPuertas));
             stage.show();	
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -66,15 +66,15 @@ public class controladorMenuSeleccionMedicos {
     @FXML
     void clickTickets(ActionEvent event) {
     	try {
-			FXMLLoader loader4 =new FXMLLoader(getClass().getResource("/vista/Visualizar_ticket_clinico.fxml"));
-			controlador_visu_ti_clinico control4 = new controlador_visu_ti_clinico();
+			FXMLLoader loaderTicketCl =new FXMLLoader(getClass().getResource("/vista/Visualizar_ticket_clinico.fxml"));
+			controlador_visu_ti_clinico controlTicketCl = new controlador_visu_ti_clinico();
 
-            loader4.setController(control4);
-            Parent root4 = loader4.load();
+            loaderTicketCl.setController(controlTicketCl);
+            Parent rootTicketCl = loaderTicketCl.load();
             
             Stage stage = new Stage();
 
-            stage.setScene(new Scene(root4));
+            stage.setScene(new Scene(rootTicketCl));
             stage.show();	
 		} catch(Exception e) {
 			e.printStackTrace();

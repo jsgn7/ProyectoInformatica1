@@ -11,13 +11,13 @@ public class MainLogin extends Application {
 	
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("/vista/Login.fxml"));
-			controladorLogin control=new controladorLogin();
+			FXMLLoader loaderMain=new FXMLLoader(getClass().getResource("/vista/Login.fxml"));
+			controladorLogin controlMain=new controladorLogin();
 
-            loader.setController(control);
-            Parent root=loader.load();
+            loaderMain.setController(controlMain);
+            Parent rootMain=loaderMain.load();
 
-            primaryStage.setScene(new Scene(root));
+            primaryStage.setScene(new Scene(rootMain));
             primaryStage.show();	
 		} catch(Exception e) {
 			e.printStackTrace();

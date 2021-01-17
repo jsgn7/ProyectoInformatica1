@@ -59,15 +59,15 @@ public class controladorLogin {
     @FXML
     void registrarse(ActionEvent event) {
     	try {
-			FXMLLoader loader2=new FXMLLoader(getClass().getResource("/vista/Registro.fxml"));
-			controladorRegistro control2=new controladorRegistro();
+			FXMLLoader loaderRegistro=new FXMLLoader(getClass().getResource("/vista/Registro.fxml"));
+			controladorRegistro controlRegistro=new controladorRegistro();
 
-            loader2.setController(control2);
-            Parent root2=loader2.load();
+            loaderRegistro.setController(controlRegistro);
+            Parent rootRegistro=loaderRegistro.load();
             
             Stage stage = new Stage();
 
-            stage.setScene(new Scene(root2));
+            stage.setScene(new Scene(rootRegistro));
             stage.show();	
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -91,27 +91,27 @@ public class controladorLogin {
 				try {
 					if (usuarios.get(i-1).getRol().equals("Paciente")) {
 
-						FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/vista/MenuSeleccion.fxml"));
-						controladorMenuSeleccionPaciente control3 = new controladorMenuSeleccionPaciente();
+						FXMLLoader loaderMenuPac = new FXMLLoader(getClass().getResource("/vista/MenuSeleccion.fxml"));
+						controladorMenuSeleccionPaciente controlMenuPac = new controladorMenuSeleccionPaciente();
 
-						loader3.setController(control3);
-						Parent root3 = loader3.load();
+						loaderMenuPac.setController(controlMenuPac);
+						Parent rootMenuPac = loaderMenuPac.load();
 						
 						Stage stage = new Stage();
 						
-						stage.setScene(new Scene(root3));
+						stage.setScene(new Scene(rootMenuPac));
 						stage.show();
 					}else {
 
-						FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/vista/MenuSeleccion.fxml"));
-						controladorMenuSeleccionMedicos control3 = new controladorMenuSeleccionMedicos();
+						FXMLLoader loaderMenuMed = new FXMLLoader(getClass().getResource("/vista/MenuSeleccion.fxml"));
+						controladorMenuSeleccionMedicos controlMenuMed = new controladorMenuSeleccionMedicos();
 
-						loader3.setController(control3);
-						Parent root3 = loader3.load();
+						loaderMenuMed.setController(controlMenuMed);
+						Parent rootMenuMed = loaderMenuMed.load();
 						
 						Stage stage = new Stage();
 						
-						stage.setScene(new Scene(root3));
+						stage.setScene(new Scene(rootMenuMed));
 						stage.show();
 
 					}

@@ -1,0 +1,16 @@
+[
+  {
+    "codigoTicket": 1,
+    "DNIpaciente": "andres",
+    "DNIdoctor": "Pablo",
+    "descripcion": "Me duele la cabeza",
+    "respuesta": "toma una pastilla"
+  },
+  {
+    "codigoTicket": 2,
+    "DNIpaciente": "carlos ",
+    "DNIdoctor": "Pablo",
+    "descripcion": "Me duele el pie",
+    "respuesta": "parate bien"
+  }
+]
