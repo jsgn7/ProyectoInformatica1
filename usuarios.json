@@ -1,20 +1,13 @@
 [
   {
-    "nombreUsuario": "Gonzalo",
+    "nombreUsuario": "Medico1",
     "pass": "hola",
-    "edad": 0,
+    "preguntaSeguridad": "Color favorito",
+    "respuesta": "Verde",
+    "dni": "51525354D",
+    "nombre": "Pedro",
+    "apellido": "Garcia Gomez",
+    "edad": 45,
     "rol": "Medico"
-  },
-  {
-    "nombreUsuario": "Javier",
-    "pass": "1234",
-    "edad": 0,
-    "rol": "Medico"
-  },
-  {
-    "nombreUsuario": "Pedro",
-    "pass": "adios",
-    "edad": 0,
-    "rol": "Paciente"
   }
 ]

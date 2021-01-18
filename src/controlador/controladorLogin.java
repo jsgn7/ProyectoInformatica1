@@ -101,6 +101,9 @@ public class controladorLogin {
 						
 						stage.setScene(new Scene(rootMenuPac));
 						stage.show();
+						
+						Stage stage1 = (Stage) entrar.getScene().getWindow();
+						stage1.close();
 					}else {
 
 						FXMLLoader loaderMenuMed = new FXMLLoader(getClass().getResource("/vista/MenuSeleccion.fxml"));
@@ -110,10 +113,12 @@ public class controladorLogin {
 						Parent rootMenuMed = loaderMenuMed.load();
 						
 						Stage stage = new Stage();
-						
 						stage.setScene(new Scene(rootMenuMed));
 						stage.show();
-
+						
+						Stage stage1 = (Stage) entrar.getScene().getWindow();
+						stage1.close();
+						
 					}
 
 				} catch (Exception e) {
@@ -126,7 +131,20 @@ public class controladorLogin {
 
     @FXML
     void recuperarContraseñaVentana(MouseEvent event) {
+    	try {
+			FXMLLoader loaderRecuperarContraseña=new FXMLLoader(getClass().getResource("/vista/RecuperarContraseña.fxml"));
+			controladorRecuperarContraseña controlRecuperarContraseña=new controladorRecuperarContraseña();
 
+            loaderRecuperarContraseña.setController(controlRecuperarContraseña);
+            Parent rootRecuperarContraseña=loaderRecuperarContraseña.load();
+            
+            Stage stage = new Stage();
+
+            stage.setScene(new Scene(rootRecuperarContraseña));
+            stage.show();	
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
     }
     
     /*

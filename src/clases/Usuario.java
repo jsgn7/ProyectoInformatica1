@@ -6,6 +6,8 @@ public class Usuario {
 	
 	private String nombreUsuario;
 	private String pass;
+	private String preguntaSeguridad;
+	private String respuesta;
 	private String dni;	
 	private String nombre;
 	private String apellido;
@@ -17,25 +19,38 @@ public class Usuario {
 	public Usuario() {
 		
 	}
-	//Constructor paciente
-	public Usuario(String nombreUsuario, String pass, String dni, String nombre, String apellido, int edad) {
+	//Constructor
+	public Usuario(String nombreUsuario, String pass, String rol, String dni, String nombre, String apellido, int edad,
+			String preguntaSeguridad, String respuesta) {
 		this.nombreUsuario = nombreUsuario;
 		this.pass = pass;
+		this.rol = rol;
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
-		rol = "Paciente";
-	}
-	//Constructor medico
-	public Usuario(String nombreUsuario, String pass, String rol) {
-		this.nombreUsuario = nombreUsuario;
-		this.pass = pass;
-		this.rol = rol;
+		this.preguntaSeguridad = preguntaSeguridad;
+		this.respuesta = respuesta;
+		
 	}
 	
 	//METODOS
 	
+	public String getPreguntaSeguridad() {
+		return preguntaSeguridad;
+	}
+	public void setPreguntaSeguridad(String preguntaSeguridad) {
+		this.preguntaSeguridad = preguntaSeguridad;
+	}
+	public String getRespuesta() {
+		return respuesta;
+	}
+	public void setRespuesta(String respuesta) {
+		this.respuesta = respuesta;
+	}
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}

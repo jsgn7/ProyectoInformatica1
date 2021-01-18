@@ -4,9 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
 
 import clases.Usuario;
 
@@ -19,70 +17,55 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class controladorRegistro {
+public class controladorCambioContraseña {
 
-	@FXML
+    @FXML
     private ResourceBundle resources;
 
     @FXML
     private URL location;
 
     @FXML
-    private JFXPasswordField Password;
+    private JFXButton cambiarContraseñaBoton;
 
     @FXML
-    private JFXTextField NombreUsuario;
+    private Label usuarioEtiqueta;
 
     @FXML
-    private JFXComboBox<String> Rol;
+    private JFXPasswordField cambioContraseña;
 
     @FXML
-    private JFXTextField dni;
+    private JFXPasswordField CambioContraseñaConfirmar;
 
     @FXML
-    private JFXTextField nombre;
-
-    @FXML
-    private JFXTextField apellidos;
-
-    @FXML
-    private JFXTextField edad;
-
-    @FXML
-    private JFXTextField respuesta;
-
-    @FXML
-    private JFXComboBox<String> preguntaSeguridad1;
-
-    @FXML
-    private JFXButton confirmar;
-    
-    ObservableList<String> roles = FXCollections.observableArrayList("Medico","Paciente");
-    
-    ObservableList<String> preguntas = FXCollections.observableArrayList("Nombre de su mascota","Pelicula favorita","Color favorito");
-    
-    @FXML
-    void registro(ActionEvent event) {
+    void cambioDeContraseña(ActionEvent event) {
     	Vector<Usuario> usuarios = desserializarJsonAArray();
-    	Usuario usuario = new Usuario(NombreUsuario.getText(), Password.getText(), Rol.getSelectionModel().getSelectedItem().toString(),
-    			dni.getText(),nombre.getText(), apellidos.getText(),Integer.parseInt(edad.getText()),preguntaSeguridad1.getSelectionModel().getSelectedItem().toString(),
-    			respuesta.getText());
-    	usuarios.add(usuario);
+    	if(cambioContraseña.getText().equals(CambioContraseñaConfirmar.getText())) {
+    		int i = 0;
+    		boolean encontrado = false;
+    		while(i<usuarios.size() && !encontrado) {
+    			if(usuarios.get(i).getNombreUsuario().equals(usuarioEtiqueta.getText()))
+    				encontrado = true;
+    		}
+    		usuarios.get(i).setContraseña(cambioContraseña.getText());
+    	}
     	Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
     	try (FileWriter writer = new FileWriter("usuarios.json",false)){
     		prettyGson.toJson(usuarios,writer);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    	
-    	Stage stage = (Stage) confirmar.getScene().getWindow();
-		stage.close();
+    	Stage stage = (Stage) cambiarContraseñaBoton.getScene().getWindow();
+    	stage.close();
+    }
+    
+    public void usuario(String usuario) {
+    	usuarioEtiqueta.setText(usuario);
     }
     
     public Vector<Usuario> desserializarJsonAArray(){
@@ -101,7 +84,10 @@ public class controladorRegistro {
 
     @FXML
     void initialize() {
-    	Rol.setItems(roles);
-    	preguntaSeguridad1.setItems(preguntas);
+        assert cambiarContraseñaBoton != null : "fx:id=\"cambiarContraseñaBoton\" was not injected: check your FXML file 'CambioContraseña.fxml'.";
+        assert usuarioEtiqueta != null : "fx:id=\"usuarioEtiqueta\" was not injected: check your FXML file 'CambioContraseña.fxml'.";
+        assert cambioContraseña != null : "fx:id=\"cambioContraseña\" was not injected: check your FXML file 'CambioContraseña.fxml'.";
+        assert CambioContraseñaConfirmar != null : "fx:id=\"CambioContraseñaConfirmar\" was not injected: check your FXML file 'CambioContraseña.fxml'.";
+
     }
 }
