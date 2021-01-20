@@ -1,5 +1,7 @@
 package clases;
 
+import java.util.ArrayList;
+
 public class Usuario {
 	
 	//Atributos
@@ -13,29 +15,42 @@ public class Usuario {
 	private String apellido;
 	private int edad;
 	private String rol;
+	private ArrayList<String> pacientes;
 	
 	//CONSTRUCTORES
 	//Constructor por defecto
 	public Usuario() {
 		
 	}
-	//Constructor
+	//Pacientes
 	public Usuario(String nombreUsuario, String pass, String rol, String dni, String nombre, String apellido, int edad,
 			String preguntaSeguridad, String respuesta) {
 		this.nombreUsuario = nombreUsuario;
 		this.pass = pass;
-		this.rol = rol;
+		this.rol = "Paciente";
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
 		this.preguntaSeguridad = preguntaSeguridad;
-		this.respuesta = respuesta;
-		
+		this.respuesta = respuesta;		
+	}
+	
+	//Medico
+	public Usuario(String nombreUsuario, String pass, String rol, String dni, String nombre, String apellido, int edad,
+			String preguntaSeguridad, String respuesta, ArrayList<String> pacientes) {
+		this(nombreUsuario,pass,"Medico",dni,nombre,apellido,edad,preguntaSeguridad,respuesta);
+		this.pacientes = pacientes;
 	}
 	
 	//METODOS
 	
+	public ArrayList<String> getPacientes() {
+		return pacientes;
+	}
+	public void setPacientes(ArrayList<String> pacientes) {
+		this.pacientes = pacientes;
+	}
 	public String getPreguntaSeguridad() {
 		return preguntaSeguridad;
 	}

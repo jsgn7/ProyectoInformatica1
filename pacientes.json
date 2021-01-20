@@ -1,0 +1,16 @@
+[
+  {
+    "nombre": "Jorge Perez",
+    "dni": "52525252D",
+    "pass": "paiente",
+    "edad": 20,
+    "genero": "Hombre",
+    "preguntaSeguridad": "Color favorito",
+    "respuesta": "Verde",
+    "pulsaciones": [],
+    "sensorPuerta": false,
+    "sensor1": false,
+    "sensor2": false,
+    "telefono": "915555555"
+  }
+]

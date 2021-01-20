@@ -44,16 +44,11 @@
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <JFXPasswordField fx:id="Password" promptText="Contraseña" GridPane.rowIndex="1">
+                        <JFXPasswordField fx:id="pass" promptText="Contraseña" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="50.0" right="50.0" />
                            </GridPane.margin>
@@ -61,62 +56,25 @@
                               <Font size="15.0" />
                            </font>
                         </JFXPasswordField>
-                        <JFXTextField fx:id="NombreUsuario" promptText="Nombre Usuario">
+                        <JFXTextField fx:id="nombre" promptText="Nombre">
                            <font>
                               <Font size="15.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="50.0" right="50.0" />
                            </GridPane.margin>
+                        </JFXTextField>
+                        <JFXTextField fx:id="respuesta" promptText="Respuesta" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
                         </JFXTextField>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                            <children>
-                              <JFXComboBox fx:id="Rol" prefHeight="30.0" prefWidth="122.0" promptText="Rol" />
-                           </children>
-                        </VBox>
-                        <JFXTextField fx:id="dni" promptText="DNI" GridPane.rowIndex="3">
-                           <GridPane.margin>
-                              <Insets left="50.0" right="50.0" />
-                           </GridPane.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </JFXTextField>
-                        <JFXTextField fx:id="nombre" promptText="Nombre" GridPane.rowIndex="4">
-                           <GridPane.margin>
-                              <Insets left="50.0" right="50.0" />
-                           </GridPane.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </JFXTextField>
-                        <JFXTextField fx:id="apellidos" promptText="Apellidos" GridPane.rowIndex="5">
-                           <GridPane.margin>
-                              <Insets left="50.0" right="50.0" />
-                           </GridPane.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </JFXTextField>
-                        <JFXTextField fx:id="edad" promptText="Edad" GridPane.rowIndex="6">
-                           <GridPane.margin>
-                              <Insets left="50.0" right="50.0" />
-                           </GridPane.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </JFXTextField>
-                        <JFXTextField fx:id="respuesta" promptText="Respuesta" GridPane.rowIndex="8">
-                           <GridPane.margin>
-                              <Insets left="50.0" right="50.0" />
-                           </GridPane.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </JFXTextField>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="7">
-                           <children>
-                              <JFXComboBox fx:id="preguntaSeguridad1" prefHeight="25.0" prefWidth="345.0" promptText="Pregunta seguridad" />
+                              <JFXComboBox fx:id="preguntaSeguridad" prefHeight="25.0" prefWidth="345.0" promptText="Pregunta seguridad" />
                            </children>
                         </VBox>
                      </children>
@@ -126,7 +84,7 @@
                   </GridPane>
                </center>
                <bottom>
-                  <JFXButton fx:id="confirmar" onAction="#registro" styleClass="botonLoginRegistro" stylesheets="@../application/application.css" text="Registrarse" BorderPane.alignment="CENTER">
+                  <JFXButton fx:id="botonRegistroFin" onAction="#registrarse" styleClass="botonLoginRegistro" stylesheets="@../application/application.css" text="Registrarse" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="40.0" top="30.0" />
                      </BorderPane.margin>

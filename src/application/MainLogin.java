@@ -1,6 +1,6 @@
  package application;
 
-import controlador.controladorLogin;
+import controlador.controladorMain;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,8 +11,8 @@ public class MainLogin extends Application {
 	
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader loaderMain=new FXMLLoader(getClass().getResource("/vista/Login.fxml"));
-			controladorLogin controlMain=new controladorLogin();
+			FXMLLoader loaderMain=new FXMLLoader(getClass().getResource("/vista/Main.fxml"));
+			controladorMain controlMain=new controladorMain();
 
             loaderMain.setController(controlMain);
             Parent rootMain=loaderMain.load();

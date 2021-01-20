@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
+import clases.Paciente;
 import clases.Usuario;
 
 import java.io.FileReader;
@@ -49,18 +50,20 @@ public class controladorRecuperarContraseña {
 
     @FXML
     void cambiarContraseña(ActionEvent event) {
-    	Vector<Usuario> usuarios = desserializarJsonAArray();
+    	Paciente paciente = new Paciente();
+    	Vector<Paciente> pacientes = paciente.recuperarPacientes();
     	boolean usuarioCorrecto = false;
     	boolean preguntaSeguridadCorrecta = false;
     	boolean respuestaCorrecta = false;
     	int i = 0;
-    	while(usuarios.size()<i || !usuarioCorrecto) {
-    		if(usuarios.get(i).getNombreUsuario().equals(nombreUsuario1.getText()))
+    	while(pacientes.size()<i && !usuarioCorrecto) {
+    		if(pacientes.get(i).getDni().equals(nombreUsuario1.getText()))
     			usuarioCorrecto = true;
-    		if(usuarios.get(i).getPreguntaSeguridad().equals(preguntaSeguridad.getSelectionModel().getSelectedItem().toString()))
+    		if(pacientes.get(i).getPreguntaSeguridad().equals(preguntaSeguridad.getSelectionModel().getSelectedItem().toString()))
     			preguntaSeguridadCorrecta = true;
-    		if(usuarios.get(i).getRespuesta().equals(respuesta.getText()))
+    		if(pacientes.get(i).getRespuesta().equals(respuesta.getText()))
     			respuestaCorrecta = true;
+    		i++;
     	}
     	if(usuarioCorrecto && preguntaSeguridadCorrecta && respuestaCorrecta)
     		try {
@@ -70,7 +73,7 @@ public class controladorRecuperarContraseña {
                 loaderCambioContraseña.setController(controlCambioContraseña);
                 Parent rootCambioContraseña=loaderCambioContraseña.load();
                 
-                controlCambioContraseña.usuario(usuarios.get(i).getNombreUsuario());;
+                controlCambioContraseña.usuario(pacientes.get(i).getDni());;
                 
                 Stage stage = new Stage();
                 
