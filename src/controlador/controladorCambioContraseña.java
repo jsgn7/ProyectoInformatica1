@@ -6,6 +6,8 @@ import com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 
+import clases.Medico;
+import clases.Paciente;
 import clases.Usuario;
 
 import java.io.FileReader;
@@ -19,6 +21,7 @@ import java.util.Vector;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -44,42 +47,48 @@ public class controladorCambioContraseña {
 
     @FXML
     void cambioDeContraseña(ActionEvent event) {
-    	Vector<Usuario> usuarios = desserializarJsonAArray();
     	if(cambioContraseña.getText().equals(CambioContraseñaConfirmar.getText())) {
-    		int i = 0;
-    		boolean encontrado = false;
-    		while(i<usuarios.size() && !encontrado) {
-    			if(usuarios.get(i).getNombreUsuario().equals(usuarioEtiqueta.getText()))
-    				encontrado = true;
+    	Paciente paciente = new Paciente();
+    	Vector<Paciente> pacientes = paciente.recuperarPacientes();
+    	boolean encontrado = false;
+    	int i = 0;
+    	while(i<pacientes.size() && !encontrado) {
+    		if(pacientes.get(i).getDni().equals(usuarioEtiqueta.getText())) {
+    			encontrado = true;
     		}
-    		usuarios.get(i).setContraseña(cambioContraseña.getText());
+    		if(encontrado) {
+    			pacientes.get(i).setPass(cambioContraseña.getText());
+    			paciente.modificarPaciente(pacientes);
+    		}
+    		i++;
     	}
-    	Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
-    	try (FileWriter writer = new FileWriter("usuarios.json",false)){
-    		prettyGson.toJson(usuarios,writer);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    	if(!encontrado) {
+    		Medico medico = new Medico();
+    		Vector<Medico> medicos = medico.recuperarMedicos();
+    		i = 0;
+    		while(i<medicos.size() && !encontrado) {
+    			if(medicos.get(i).getNombre().equals(usuarioEtiqueta.getText()))
+    				encontrado = true;
+    			if(encontrado) {
+    				medicos.get(i).setPass(cambioContraseña.getText());
+    				medico.modificarMedico(medicos);
+    			}
+    			i++;
+    		}
+    	}
     	Stage stage = (Stage) cambiarContraseñaBoton.getScene().getWindow();
     	stage.close();
+    	} else {
+    		Alert alert = new Alert(Alert.AlertType.ERROR);
+    	    alert.setHeaderText(null);
+    	    alert.setTitle("Contraseñas no coinciden");
+    	    alert.setContentText("Las contraseñas no coinciden");
+    	    alert.showAndWait();
+    	}
     }
     
     public void usuario(String usuario) {
     	usuarioEtiqueta.setText(usuario);
-    }
-    
-    public Vector<Usuario> desserializarJsonAArray(){
-    	Vector<Usuario> usuarios = new Vector<Usuario>();
-    	
-    	try(Reader reader = new FileReader("usuarios.json")){
-    		Gson gson = new Gson();
-    		Type tipoListaUsuarios = new TypeToken<Vector<Usuario>>() {}.getType();
-    		usuarios = gson.fromJson(reader, tipoListaUsuarios);
-    	} catch(IOException e) {
-    		e.printStackTrace();
-    	}
-    	
-    	return usuarios;
     }
 
     @FXML

@@ -176,5 +176,14 @@ public class Paciente {
         }
 	}
 	
+	public void modificarPaciente(Vector<Paciente> pacientes) {
+		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();		
+		try(FileWriter writer = new FileWriter("pacientes.json",false)){
+			prettyGson.toJson(pacientes, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
 	
 }

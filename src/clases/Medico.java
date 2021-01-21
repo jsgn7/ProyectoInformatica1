@@ -100,4 +100,13 @@ public class Medico {
             e.printStackTrace();
         }
 	}
+	
+	public void modificarMedico(Vector<Medico> medicos) {
+		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();		
+		try(FileWriter writer = new FileWriter("medicos.json",false)){
+			prettyGson.toJson(medicos, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
 }

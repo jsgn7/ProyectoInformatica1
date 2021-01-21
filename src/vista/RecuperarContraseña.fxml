@@ -46,10 +46,10 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                      <children>
-                        <JFXComboBox fx:id="preguntaSeguridad" prefHeight="25.0" prefWidth="396.0" promptText="Pregunta seguridad" />
+                        <JFXComboBox fx:id="preguntaSeguridadCambio" prefHeight="25.0" prefWidth="396.0" promptText="Pregunta seguridad" />
                      </children>
                   </VBox>
-                  <JFXTextField fx:id="respuesta" promptText="Respuesta" GridPane.rowIndex="2">
+                  <JFXTextField fx:id="respuestaCambio" promptText="Respuesta" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="50.0" right="50.0" />
                      </GridPane.margin>
@@ -62,7 +62,7 @@
                         <JFXButton fx:id="botonCambioContraseña" buttonType="RAISED" onAction="#cambiarContraseña" prefHeight="31.0" prefWidth="158.0" styleClass="botonLoginRegistro" stylesheets="@../application/application.css" text="Cambiar contraseña" />
                      </children>
                   </VBox>
-                  <JFXTextField fx:id="nombreUsuario1" promptText="Nombre usuario">
+                  <JFXTextField fx:id="nombreUsuario" promptText="Nombre usuario">
                      <font>
                         <Font size="15.0" />
                      </font>

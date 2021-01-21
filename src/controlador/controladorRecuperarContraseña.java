@@ -1,17 +1,12 @@
 package controlador;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
+import clases.Medico;
 import clases.Paciente;
-import clases.Usuario;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
-import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Vector;
@@ -23,28 +18,29 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 public class controladorRecuperarContraseña {
 
-    @FXML
-    private ResourceBundle resources;
+	 @FXML
+	    private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	    @FXML
+	    private URL location;
 
-    @FXML
-    private JFXComboBox<String> preguntaSeguridad;
-    
-    @FXML
-    private JFXTextField nombreUsuario1;
+	    @FXML
+	    private JFXComboBox<String> preguntaSeguridadCambio;
 
+	    @FXML
+	    private JFXTextField respuestaCambio;
 
-    @FXML
-    private JFXTextField respuesta;
+	    @FXML
+	    private JFXButton botonCambioContraseña;
 
-    @FXML
-    private JFXButton botonCambioContraseña;
+	    @FXML
+	    private JFXTextField nombreUsuario;
+
     
     ObservableList<String> preguntas = FXCollections.observableArrayList("Nombre de su mascota","Pelicula favorita","Color favorito");
 
@@ -52,20 +48,41 @@ public class controladorRecuperarContraseña {
     void cambiarContraseña(ActionEvent event) {
     	Paciente paciente = new Paciente();
     	Vector<Paciente> pacientes = paciente.recuperarPacientes();
-    	boolean usuarioCorrecto = false;
-    	boolean preguntaSeguridadCorrecta = false;
     	boolean respuestaCorrecta = false;
+    	boolean usuarioCorrecto = false;
+    	boolean preguntaCorrecta = false;
+    	boolean esPaciente = true;
     	int i = 0;
-    	while(pacientes.size()<i && !usuarioCorrecto) {
-    		if(pacientes.get(i).getDni().equals(nombreUsuario1.getText()))
-    			usuarioCorrecto = true;
-    		if(pacientes.get(i).getPreguntaSeguridad().equals(preguntaSeguridad.getSelectionModel().getSelectedItem().toString()))
-    			preguntaSeguridadCorrecta = true;
-    		if(pacientes.get(i).getRespuesta().equals(respuesta.getText()))
+    	while(i<pacientes.size() && !usuarioCorrecto) {
+    		if(pacientes.get(i).getDni().equals(nombreUsuario.getText()))
+    				usuarioCorrecto = true;
+    		if(pacientes.get(i).getPreguntaSeguridad().equals(preguntaSeguridadCambio.getSelectionModel().getSelectedItem().toString()))
+    				preguntaCorrecta = true;
+    		if(pacientes.get(i).getRespuesta().equals(respuestaCambio.getText())) {
     			respuestaCorrecta = true;
+    		}
     		i++;
     	}
-    	if(usuarioCorrecto && preguntaSeguridadCorrecta && respuestaCorrecta)
+    	if(!usuarioCorrecto)
+    	esPaciente = false;
+    	
+		Medico medico = new Medico();
+		Vector<Medico> medicos = medico.recuperarMedicos();
+		i = 0;
+		while (i < medicos.size() && !usuarioCorrecto) {
+			System.out.println(medicos.get(i).getNombre().equals(nombreUsuario.getText()));
+			if (medicos.get(i).getNombre().equals(nombreUsuario.getText()))
+				usuarioCorrecto = true;
+			if (medicos.get(i).getPreguntaSeguridad()
+					.equals(preguntaSeguridadCambio.getSelectionModel().getSelectedItem().toString()))
+				preguntaCorrecta = true;
+			if (medicos.get(i).getRespuesta().equals(respuestaCambio.getText())) {
+				respuestaCorrecta = true;
+			}
+			i++;
+		}
+		
+    	if(respuestaCorrecta && usuarioCorrecto && preguntaCorrecta) {
     		try {
     			FXMLLoader loaderCambioContraseña=new FXMLLoader(getClass().getResource("/vista/CambioContraseña.fxml"));
     			controladorCambioContraseña controlCambioContraseña=new controladorCambioContraseña();
@@ -73,7 +90,11 @@ public class controladorRecuperarContraseña {
                 loaderCambioContraseña.setController(controlCambioContraseña);
                 Parent rootCambioContraseña=loaderCambioContraseña.load();
                 
-                controlCambioContraseña.usuario(pacientes.get(i).getDni());;
+                if(esPaciente) {
+                	controlCambioContraseña.usuario(pacientes.get(i-1).getDni());
+                } else {
+                	controlCambioContraseña.usuario(medicos.get(i-1).getNombre());
+                }
                 
                 Stage stage = new Stage();
                 
@@ -81,27 +102,20 @@ public class controladorRecuperarContraseña {
                 stage.show();	
     		} catch(Exception e) {
     			e.printStackTrace();
-    		}
+    	}
     	Stage stage = (Stage) botonCambioContraseña.getScene().getWindow();
     	stage.close();
-    }
-    
-    public Vector<Usuario> desserializarJsonAArray(){
-    	Vector<Usuario> usuarios = new Vector<Usuario>();
-    	
-    	try(Reader reader = new FileReader("usuarios.json")){
-    		Gson gson = new Gson();
-    		Type tipoListaUsuarios = new TypeToken<Vector<Usuario>>() {}.getType();
-    		usuarios = gson.fromJson(reader, tipoListaUsuarios);
-    	} catch(IOException e) {
-    		e.printStackTrace();
+    	} else {
+    		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    	    alert.setHeaderText(null);
+    	    alert.setTitle("Error de identificacion");
+    	    alert.setContentText("Informacion incorrecta");
+    	    alert.showAndWait();
     	}
-    	
-    	return usuarios;
     }
 
     @FXML
     void initialize() {
-        preguntaSeguridad.setItems(preguntas);
+        preguntaSeguridadCambio.setItems(preguntas);
     }
 }

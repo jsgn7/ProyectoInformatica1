@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 public class controladorMenuSeleccionMedicos {
 
+
     @FXML
     private ResourceBundle resources;
 
@@ -26,6 +27,10 @@ public class controladorMenuSeleccionMedicos {
 
     @FXML
     private JFXButton botonSensoresPuertas;
+
+    @FXML
+    private JFXButton botonPulsaciones;
+
 
     @FXML
     void clickSensores(ActionEvent event) {
@@ -80,12 +85,14 @@ public class controladorMenuSeleccionMedicos {
 			e.printStackTrace();
 		}
     }
+    
+    @FXML
+    void clickPulsaciones(ActionEvent event) {
+
+    }
 
     @FXML
     void initialize() {
-        assert botonTickets != null : "fx:id=\"botonTickets\" was not injected: check your FXML file 'MenuSeleccion.fxml'.";
-        assert botonSensores != null : "fx:id=\"botonSensores\" was not injected: check your FXML file 'MenuSeleccion.fxml'.";
-        assert botonSensoresPuertas != null : "fx:id=\"botonSensoresPuertas\" was not injected: check your FXML file 'MenuSeleccion.fxml'.";
-
+    	
     }
 }
