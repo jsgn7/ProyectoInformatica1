@@ -37,7 +37,7 @@
             </VBox>
             <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <bottom>
-                  <JFXButton fx:id="cambiarContraseñaBoton" buttonType="RAISED" onAction="#cambioDeContraseña" styleClass="botonLoginRegistro" stylesheets="@../application/application.css" text="Cambiar contraseña" BorderPane.alignment="CENTER">
+                  <JFXButton fx:id="cambiarContrasenaBoton" buttonType="RAISED" onAction="#cambioDeContrasena" styleClass="botonLoginRegistro" stylesheets="@../application/application.css" text="Cambiar contrasena" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -66,7 +66,7 @@
                               </Label>
                            </children>
                         </VBox>
-                        <JFXPasswordField fx:id="cambioContraseña" promptText="Contraseña" GridPane.rowIndex="1">
+                        <JFXPasswordField fx:id="cambioContrasena" promptText="Contrasena" GridPane.rowIndex="1">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -74,7 +74,7 @@
                               <Insets left="50.0" right="50.0" />
                            </GridPane.margin>
                         </JFXPasswordField>
-                        <JFXPasswordField fx:id="CambioContraseñaConfirmar" promptText="Repita contraseña" GridPane.rowIndex="2">
+                        <JFXPasswordField fx:id="CambioContrasenaConfirmar" promptText="Repita contrasena" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets left="50.0" right="50.0" />
                            </GridPane.margin>

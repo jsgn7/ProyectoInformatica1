@@ -48,7 +48,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <JFXPasswordField fx:id="contraseña" promptText="Contraseña" GridPane.rowIndex="1">
+                        <JFXPasswordField fx:id="contrasena" promptText="Contrasena" GridPane.rowIndex="1">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -64,7 +64,7 @@
                               <Insets left="20.0" right="20.0" />
                            </GridPane.margin>
                         </JFXTextField>
-                        <Label fx:id="recuperarContraseña" onMouseClicked="#recuperarContraseñaVentana" text="Recuperar contraseña" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                        <Label fx:id="recuperarContrasena" onMouseClicked="#recuperarContrasenaVentana" text="Recuperar contrasena" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                            <font>
                               <Font size="15.0" />
                            </font>

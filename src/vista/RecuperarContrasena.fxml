@@ -59,7 +59,7 @@
                   </JFXTextField>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
                      <children>
-                        <JFXButton fx:id="botonCambioContraseña" buttonType="RAISED" onAction="#cambiarContraseña" prefHeight="31.0" prefWidth="158.0" styleClass="botonLoginRegistro" stylesheets="@../application/application.css" text="Cambiar contraseña" />
+                        <JFXButton fx:id="botonCambioContrasena" buttonType="RAISED" onAction="#cambiarContrasena" prefHeight="31.0" prefWidth="158.0" styleClass="botonLoginRegistro" stylesheets="@../application/application.css" text="Cambiar contrasena" />
                      </children>
                   </VBox>
                   <JFXTextField fx:id="nombreUsuario" promptText="Nombre usuario">
