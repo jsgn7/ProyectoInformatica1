@@ -1,0 +1,26 @@
+[
+  {
+    "nombre": "Jorge Gomez",
+    "pass": "Nueva",
+    "preguntaSeguridad": "Nombre de su mascota",
+    "respuesta": "Perro",
+    "pacientes": [
+      {
+        "nombre": "Pedro Lopez",
+        "dni": "51525354A",
+        "pass": "Nueva",
+        "edad": 22,
+        "genero": "Hombre",
+        "preguntaSeguridad": "Color favorito",
+        "respuesta": "Verde",
+        "pulsaciones": [],
+        "tickets": ["Bienvenido a helpService"],
+        "sensorPuerta": false,
+        "sensor1": false,
+        "sensor2": false,
+        "telefono": "97774455",
+        "medico": "Jorge Gomez"
+      }
+    ]
+  }
+]
