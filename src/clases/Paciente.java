@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Vector;
 
 import com.google.gson.Gson;
@@ -23,18 +24,20 @@ public class Paciente {
 	private String preguntaSeguridad;
 	private String respuesta;
 	private ArrayList<Integer> pulsaciones;
+	private ArrayList<String> tickets;
 	private boolean sensorPuerta;
 	private boolean sensor1;
 	private boolean sensor2;
 	private String telefono;
+	private String medico;
 	
 	//Constructor
 	public Paciente() {
 		
 	}
 	
-	public Paciente(String nombre, String dni, String pass, int edad, String genero, String preguntaSeguridad, String respuesta, ArrayList<Integer>pulsaciones, boolean sensorPuerta,
-			boolean sensor1, boolean sensor2, String telefono) {
+	public Paciente(String nombre, String dni, String pass, int edad, String genero, String preguntaSeguridad, String respuesta,
+			boolean sensorPuerta, boolean sensor1, boolean sensor2, String telefono) {
 		this.nombre = nombre;
 		this.dni = dni;
 		this.pass = pass;
@@ -42,11 +45,21 @@ public class Paciente {
 		this.genero = genero;
 		this.preguntaSeguridad = preguntaSeguridad;
 		this.respuesta = respuesta;
-		this.pulsaciones = pulsaciones;
 		this.sensorPuerta = sensorPuerta;
 		this.sensor1 = sensor1;
 		this.sensor2 = sensor2;
 		this.telefono = telefono;
+		medico = medicoAleatorio();
+		pulsaciones = new ArrayList<Integer>();
+		tickets = new ArrayList<String>();
+	}
+
+	public ArrayList<String> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(ArrayList<String> tickets) {
+		this.tickets = tickets;
 	}
 
 	public int getEdad() {
@@ -72,6 +85,14 @@ public class Paciente {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public String getMedico() {
+		return medico;
+	}
+
+	public void setMedico(String medico) {
+		this.medico = medico;
 	}
 
 	public String getDni() {
@@ -150,40 +171,11 @@ public class Paciente {
 		pulsaciones.add(pulso);
 	}
 	
-	public Vector<Paciente> recuperarPacientes(){
-    	Vector<Paciente> pacientes = new Vector<Paciente>();
-    	
-    	try(Reader reader = new FileReader("pacientes.json")){
-    		Gson gson = new Gson();
-    		Type tipoListaPacientes = new TypeToken<Vector<Paciente>>() {}.getType();
-    		pacientes = gson.fromJson(reader, tipoListaPacientes);
-    	} catch(IOException e) {
-    		e.printStackTrace();
-    	}
-    	
-    	return pacientes;
-    }
-	
-	public void añadirPaciente(Paciente paciente) {
-		Vector<Paciente> pacientes = recuperarPacientes();
-		pacientes.add(paciente);
-		
-		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();		
-		try(FileWriter writer = new FileWriter("pacientes.json",false)){
-			prettyGson.toJson(pacientes, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+	public String medicoAleatorio() {
+		Medico medico = new Medico();
+		Vector<Medico> medicos = medico.recuperarMedicos();
+		Random random = new Random();
+		return medicos.get(random.nextInt(medicos.size())).getNombre();
 	}
-	
-	public void modificarPaciente(Vector<Paciente> pacientes) {
-		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();		
-		try(FileWriter writer = new FileWriter("pacientes.json",false)){
-			prettyGson.toJson(pacientes, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
-	
 	
 }

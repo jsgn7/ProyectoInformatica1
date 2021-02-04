@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import clases.Medico;
 import clases.Paciente;
 
 import java.net.URL;
@@ -45,24 +46,36 @@ public class controladorLoginPaciente {
 
     @FXML
     void entrarEnApp(ActionEvent event) {
-    	Paciente paciente = new Paciente();
-    	Vector<Paciente> pacientes = paciente.recuperarPacientes();
+    	Medico medico = new Medico();
+    	Vector<Medico> medicos = medico.recuperarMedicos();
     	int i = 0;
+    	int j = 0;
     	boolean encontrado = false;
-    	while(i<pacientes.size() && !encontrado) {
-    		if(pacientes.get(i).getDni().equals(usuario.getText()) && pacientes.get(i).getPass().equals(contraseña.getText())) {
-    			encontrado = true;
+    	String pregunta = "";
+    	while(i<medicos.size() && !encontrado) {
+    		j = 0;
+    		while(j<medicos.get(i).getPacientes().size() && !encontrado) {
+    			if(medicos.get(i).getPacientes().get(j).getNombre().equals(usuario.getText())) {
+    				encontrado = true;
+    				if(!medicos.get(i).getPacientes().get(j).getTickets().isEmpty())
+    					pregunta = medicos.get(i).getPacientes().get(j).getTickets().get( medicos.get(i).getPacientes().get(j).getTickets().size()-1);
+    			}
+    			j++;
     		}
     		i++;
     	}
     	if(encontrado) {
     		try {
-    			FXMLLoader loaderTicketPaciente=new FXMLLoader(getClass().getResource("/vista/Visualizar_ticket_paciente.fxml"));
-    			controlador_visu_ti_paciente controlTicketPaciente=new controlador_visu_ti_paciente();
+    			FXMLLoader loaderTicketPaciente=new FXMLLoader(getClass().getResource("/vista/TicketsPaciente.fxml"));
+    			controladorTicketPaciente controlTicketPaciente=new controladorTicketPaciente();
 
                 loaderTicketPaciente.setController(controlTicketPaciente);
-                Parent rootTicketPaciente=loaderTicketPaciente.load();
+                Parent rootTicketPaciente = loaderTicketPaciente.load();
                 
+                controlTicketPaciente.nombrePaciente(usuario.getText());
+                controlTicketPaciente.doctor(medicos.get(i-1).getPacientes().get(j-1).getMedico());
+                controlTicketPaciente.setPregunta(pregunta);
+              
                 Stage stage = new Stage();
 
                 stage.setScene(new Scene(rootTicketPaciente));

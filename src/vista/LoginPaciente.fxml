@@ -56,7 +56,7 @@
                               <Insets left="20.0" right="20.0" />
                            </GridPane.margin>
                         </JFXPasswordField>
-                        <JFXTextField fx:id="usuario" promptText="DNI">
+                        <JFXTextField fx:id="usuario" promptText="Usuario">
                            <font>
                               <Font size="15.0" />
                            </font>

@@ -11,11 +11,14 @@ import clases.Paciente;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Vector;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 
 public class controladorRegistroPaciente {
 
@@ -57,10 +60,33 @@ public class controladorRegistroPaciente {
 
     @FXML
     void registrarse(ActionEvent event) {
-    	ArrayList<Integer> pulsaciones = new ArrayList<Integer>();
+    	
+    	//Creo el paciente (Medico aleatorio , mensajes y pulsaciones vacio
     	Paciente paciente = new Paciente(nombre.getText(), dni.getText(),pass.getText(),Integer.parseInt(edad.getText()),genero.getSelectionModel().getSelectedItem().toString(),
-    			preguntaSeguridad.getSelectionModel().getSelectedItem().toString(),respuesta.getText(),pulsaciones, false, false, false, telefono.getText());
-    	paciente.añadirPaciente(paciente);
+    			preguntaSeguridad.getSelectionModel().getSelectedItem().toString(),respuesta.getText(), false, false, false, telefono.getText());
+    	
+    	//Asigno al medico el paciente y lo guardamos en el Json
+    	Medico medico = new Medico();
+    	Vector<Medico> medicos = medico.recuperarMedicos();
+    	int i = 0;
+    	boolean encontrado = false;
+    	while(i<medicos.size() && !encontrado) {
+    		if(medicos.get(i).getNombre().equals(paciente.getMedico()))
+    			encontrado = true;
+    		i++;
+    	}
+    	medicos.get(i-1).añadirPaciente(paciente);
+    	medico.modificarMedico(medicos);
+    	
+    	//Informo al usuario del registro exitoso
+    	Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    	alert.setHeaderText(null);
+	    alert.setTitle("Registrado");
+	    alert.setContentText("Registrado con exito\nSu medico asociado es: " + paciente.getMedico());
+	    alert.showAndWait();
+    	Stage stage = (Stage) botonRegistroFin.getScene().getWindow();
+    	stage.close();
+    	
     }
 
     @FXML

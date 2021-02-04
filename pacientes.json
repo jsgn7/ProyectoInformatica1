@@ -1,16 +1,17 @@
 [
   {
-    "nombre": "Jorge Perez",
-    "dni": "52525252D",
+    "nombre": "Jorge Ruiz",
+    "dni": "51525354",
     "pass": "hola",
-    "edad": 20,
+    "edad": 22,
     "genero": "Hombre",
     "preguntaSeguridad": "Color favorito",
-    "respuesta": "Verde",
+    "respuesta": "Rojo",
     "pulsaciones": [],
     "sensorPuerta": false,
     "sensor1": false,
     "sensor2": false,
-    "telefono": "915555555"
+    "telefono": "917887878",
+    "medico": "Pedro Gonzalez"
   }
 ]

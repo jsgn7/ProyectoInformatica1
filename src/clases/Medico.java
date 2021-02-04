@@ -19,14 +19,14 @@ public class Medico {
 	private String pass;
 	private String preguntaSeguridad;
 	private String respuesta;
-	private ArrayList<String> pacientes;
+	private ArrayList<Paciente> pacientes;
 	
 	//Constructor
 	public Medico() {
 		
 	}
 	
-	public Medico(String nombre, String pass, String preguntaSeguridad, String respuesta, ArrayList<String> pacientes) {
+	public Medico(String nombre, String pass, String preguntaSeguridad, String respuesta, ArrayList<Paciente> pacientes) {
 		this.nombre = nombre;
 		this.pass = pass;
 		this.preguntaSeguridad = preguntaSeguridad;
@@ -67,18 +67,18 @@ public class Medico {
 		this.respuesta = respuesta;
 	}
 	
-	public void añadirPaciente(String paciente) {
+	public void añadirPaciente(Paciente paciente) {
 		pacientes.add(paciente);
 	}
 
-	public ArrayList<String> getPacientes() {
+	public ArrayList<Paciente> getPacientes() {
 		return pacientes;
 	}
 	
 	public Vector<Medico> recuperarMedicos(){
     	Vector<Medico> medicos = new Vector<Medico>();
     	
-    	try(Reader reader = new FileReader("medicos.json")){
+    	try(Reader reader = new FileReader("Datos.json")){
     		Gson gson = new Gson();
     		Type tipoListaUsuarios = new TypeToken<Vector<Medico>>() {}.getType();
     		medicos = gson.fromJson(reader, tipoListaUsuarios);
@@ -94,7 +94,7 @@ public class Medico {
 		medicos.add(medico);
 		
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();		
-		try(FileWriter writer = new FileWriter("medicos.json",false)){
+		try(FileWriter writer = new FileWriter("Datos.json",false)){
 			prettyGson.toJson(medicos, writer);
         } catch (IOException e) {
             e.printStackTrace();
@@ -103,7 +103,7 @@ public class Medico {
 	
 	public void modificarMedico(Vector<Medico> medicos) {
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();		
-		try(FileWriter writer = new FileWriter("medicos.json",false)){
+		try(FileWriter writer = new FileWriter("Datos.json",false)){
 			prettyGson.toJson(medicos, writer);
         } catch (IOException e) {
             e.printStackTrace();

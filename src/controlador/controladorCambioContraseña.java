@@ -48,34 +48,25 @@ public class controladorCambioContraseña {
     @FXML
     void cambioDeContraseña(ActionEvent event) {
     	if(cambioContraseña.getText().equals(CambioContraseñaConfirmar.getText())) {
-    	Paciente paciente = new Paciente();
-    	Vector<Paciente> pacientes = paciente.recuperarPacientes();
-    	boolean encontrado = false;
+    	Medico medico = new Medico();
+    	Vector<Medico> medicos = medico.recuperarMedicos();
     	int i = 0;
-    	while(i<pacientes.size() && !encontrado) {
-    		if(pacientes.get(i).getDni().equals(usuarioEtiqueta.getText())) {
+    	boolean encontrado = false;
+    	while(i<medicos.size() && !encontrado) {
+    		if(medicos.get(i).getNombre().equals(usuarioEtiqueta.getText())) {
+    			medicos.get(i).setPass(cambioContraseña.getText());
     			encontrado = true;
-    		}
-    		if(encontrado) {
-    			pacientes.get(i).setPass(cambioContraseña.getText());
-    			paciente.modificarPaciente(pacientes);
-    		}
-    		i++;
-    	}
-    	if(!encontrado) {
-    		Medico medico = new Medico();
-    		Vector<Medico> medicos = medico.recuperarMedicos();
-    		i = 0;
-    		while(i<medicos.size() && !encontrado) {
-    			if(medicos.get(i).getNombre().equals(usuarioEtiqueta.getText()))
-    				encontrado = true;
-    			if(encontrado) {
-    				medicos.get(i).setPass(cambioContraseña.getText());
-    				medico.modificarMedico(medicos);
+    		} else {
+    			int j = 0;
+    			while(j<medicos.get(i).getPacientes().size() && !encontrado) {
+    				if(medicos.get(i).getPacientes().get(j).getNombre().equals(usuarioEtiqueta.getText())) {
+    					medicos.get(i).getPacientes().get(j).setPass(cambioContraseña.getText());
+    					encontrado = true;
+    				}
     			}
-    			i++;
     		}
     	}
+    	medico.modificarMedico(medicos);
     	Stage stage = (Stage) cambiarContraseñaBoton.getScene().getWindow();
     	stage.close();
     	} else {

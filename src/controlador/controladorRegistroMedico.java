@@ -26,6 +26,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 public class controladorRegistroMedico {
@@ -53,9 +54,16 @@ public class controladorRegistroMedico {
     
     @FXML
     void registrarse(ActionEvent event) {
-    	ArrayList<String> pacientes = new ArrayList<String>();
+    	ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
     	Medico medico = new Medico(nombre.getText(),pass.getText(),preguntaSeguridad.getSelectionModel().getSelectedItem().toString(),respuesta.getText(),pacientes);
     	medico.añadirMedico(medico);
+    	Alert alert = new Alert(Alert.AlertType.INFORMATION);
+	    alert.setHeaderText(null);
+	    alert.setTitle("Registrado");
+	    alert.setContentText("Registrado con exito");
+	    alert.showAndWait();
+    	Stage stage = (Stage) botonRegistroFin.getScene().getWindow();
+    	stage.close();
     }
     
     ObservableList<String> preguntas = FXCollections.observableArrayList("Nombre de su mascota","Pelicula favorita","Color favorito");

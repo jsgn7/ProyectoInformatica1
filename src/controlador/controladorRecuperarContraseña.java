@@ -46,43 +46,38 @@ public class controladorRecuperarContraseña {
 
     @FXML
     void cambiarContraseña(ActionEvent event) {
-    	Paciente paciente = new Paciente();
-    	Vector<Paciente> pacientes = paciente.recuperarPacientes();
-    	boolean respuestaCorrecta = false;
-    	boolean usuarioCorrecto = false;
-    	boolean preguntaCorrecta = false;
-    	boolean esPaciente = true;
+    	boolean esMedico = false;
+    	boolean encontrado = false;
+    	boolean informacionCorrecta = false;
+    	Medico medico = new Medico();
+    	Vector<Medico> medicos = medico.recuperarMedicos();
     	int i = 0;
-    	while(i<pacientes.size() && !usuarioCorrecto) {
-    		if(pacientes.get(i).getDni().equals(nombreUsuario.getText()))
-    				usuarioCorrecto = true;
-    		if(pacientes.get(i).getPreguntaSeguridad().equals(preguntaSeguridadCambio.getSelectionModel().getSelectedItem().toString()))
-    				preguntaCorrecta = true;
-    		if(pacientes.get(i).getRespuesta().equals(respuestaCambio.getText())) {
-    			respuestaCorrecta = true;
+    	int j = 0;
+    	while(i<medicos.size() && !encontrado && !esMedico) {
+    		if(medicos.get(i).getNombre().equals(nombreUsuario.getText())) {
+    			esMedico = true;
+    			encontrado = true;
+    			if(medicos.get(i).getPreguntaSeguridad().equals(preguntaSeguridadCambio.getSelectionModel().getSelectedItem().toString()) && 
+    					medicos.get(i).getRespuesta().equals(respuestaCambio.getText())) {
+    				informacionCorrecta = true;
+    			}
+    		} else {
+    			j = 0;
+    			while(j<medicos.get(i).getPacientes().size() && !encontrado && !esMedico) {
+    				if(medicos.get(i).getPacientes().get(j).getNombre().equals(nombreUsuario.getText())) {
+    					encontrado = true;
+    					if(medicos.get(i).getPacientes().get(j).getPreguntaSeguridad().equals(preguntaSeguridadCambio.getSelectionModel().getSelectedItem().toString()) &&
+    							medicos.get(i).getPacientes().get(j).getRespuesta().equals(respuestaCambio.getText())) {
+    						informacionCorrecta = true;
+    					}
+    				}
+    				j++;
+    			}
     		}
     		i++;
     	}
-    	if(!usuarioCorrecto)
-    	esPaciente = false;
-    	
-		Medico medico = new Medico();
-		Vector<Medico> medicos = medico.recuperarMedicos();
-		i = 0;
-		while (i < medicos.size() && !usuarioCorrecto) {
-			System.out.println(medicos.get(i).getNombre().equals(nombreUsuario.getText()));
-			if (medicos.get(i).getNombre().equals(nombreUsuario.getText()))
-				usuarioCorrecto = true;
-			if (medicos.get(i).getPreguntaSeguridad()
-					.equals(preguntaSeguridadCambio.getSelectionModel().getSelectedItem().toString()))
-				preguntaCorrecta = true;
-			if (medicos.get(i).getRespuesta().equals(respuestaCambio.getText())) {
-				respuestaCorrecta = true;
-			}
-			i++;
-		}
 		
-    	if(respuestaCorrecta && usuarioCorrecto && preguntaCorrecta) {
+    	if(encontrado && informacionCorrecta) {
     		try {
     			FXMLLoader loaderCambioContraseña=new FXMLLoader(getClass().getResource("/vista/CambioContraseña.fxml"));
     			controladorCambioContraseña controlCambioContraseña=new controladorCambioContraseña();
@@ -90,8 +85,8 @@ public class controladorRecuperarContraseña {
                 loaderCambioContraseña.setController(controlCambioContraseña);
                 Parent rootCambioContraseña=loaderCambioContraseña.load();
                 
-                if(esPaciente) {
-                	controlCambioContraseña.usuario(pacientes.get(i-1).getDni());
+                if(!esMedico) {
+                	controlCambioContraseña.usuario(medicos.get(i-1).getPacientes().get(j-1).getNombre());
                 } else {
                 	controlCambioContraseña.usuario(medicos.get(i-1).getNombre());
                 }
