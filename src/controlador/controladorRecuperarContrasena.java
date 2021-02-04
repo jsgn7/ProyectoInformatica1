@@ -21,7 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
-public class controladorRecuperarContraseña {
+public class controladorRecuperarContrasena {
 
 	 @FXML
 	    private ResourceBundle resources;
@@ -36,7 +36,7 @@ public class controladorRecuperarContraseña {
 	    private JFXTextField respuestaCambio;
 
 	    @FXML
-	    private JFXButton botonCambioContraseña;
+	    private JFXButton botonCambioContrasena;
 
 	    @FXML
 	    private JFXTextField nombreUsuario;
@@ -45,7 +45,7 @@ public class controladorRecuperarContraseña {
     ObservableList<String> preguntas = FXCollections.observableArrayList("Nombre de su mascota","Pelicula favorita","Color favorito");
 
     @FXML
-    void cambiarContraseña(ActionEvent event) {
+    void cambiarContrasena(ActionEvent event) {
     	boolean esMedico = false;
     	boolean encontrado = false;
     	boolean informacionCorrecta = false;
@@ -79,26 +79,26 @@ public class controladorRecuperarContraseña {
 		
     	if(encontrado && informacionCorrecta) {
     		try {
-    			FXMLLoader loaderCambioContraseña=new FXMLLoader(getClass().getResource("/vista/CambioContraseña.fxml"));
-    			controladorCambioContraseña controlCambioContraseña=new controladorCambioContraseña();
+    			FXMLLoader loaderCambioContrasena=new FXMLLoader(getClass().getResource("/vista/CambioContrasena.fxml"));
+    			controladorCambioContrasena controlCambioContrasena=new controladorCambioContrasena();
 
-                loaderCambioContraseña.setController(controlCambioContraseña);
-                Parent rootCambioContraseña=loaderCambioContraseña.load();
+                loaderCambioContrasena.setController(controlCambioContrasena);
+                Parent rootCambioContrasena=loaderCambioContrasena.load();
                 
                 if(!esMedico) {
-                	controlCambioContraseña.usuario(medicos.get(i-1).getPacientes().get(j-1).getNombre());
+                	controlCambioContrasena.usuario(medicos.get(i-1).getPacientes().get(j-1).getNombre());
                 } else {
-                	controlCambioContraseña.usuario(medicos.get(i-1).getNombre());
+                	controlCambioContrasena.usuario(medicos.get(i-1).getNombre());
                 }
                 
                 Stage stage = new Stage();
                 
-                stage.setScene(new Scene(rootCambioContraseña));
+                stage.setScene(new Scene(rootCambioContrasena));
                 stage.show();	
     		} catch(Exception e) {
     			e.printStackTrace();
     	}
-    	Stage stage = (Stage) botonCambioContraseña.getScene().getWindow();
+    	Stage stage = (Stage) botonCambioContrasena.getScene().getWindow();
     	stage.close();
     	} else {
     		Alert alert = new Alert(Alert.AlertType.INFORMATION);

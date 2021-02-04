@@ -35,13 +35,13 @@ public class controladorLoginMedico {
 	    private URL location;
 
 	    @FXML
-	    private JFXPasswordField contraseña;
+	    private JFXPasswordField contrasena;
 
 	    @FXML
 	    private JFXTextField usuario;
 
 	    @FXML
-	    private Label recuperarContraseña;
+	    private Label recuperarContrasena;
 
 	    @FXML
 	    private JFXButton botonRegistro;
@@ -74,7 +74,7 @@ public class controladorLoginMedico {
 		int i = 0;
 		boolean encontrado = false;
 		while(i<medicos.size() && !encontrado) {
-			if(medicos.get(i).getNombre().equals(usuario.getText()) && medicos.get(i).getPass().equals(contraseña.getText()))
+			if(medicos.get(i).getNombre().equals(usuario.getText()) && medicos.get(i).getPass().equals(contrasena.getText()))
 				encontrado = true;
 			i++;
 		}
@@ -97,23 +97,23 @@ public class controladorLoginMedico {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
     	    alert.setHeaderText(null);
     	    alert.setTitle("Error de identificacion");
-    	    alert.setContentText("Usuario o contraseña incorrectos");
+    	    alert.setContentText("Usuario o contrasena incorrectos");
     	    alert.showAndWait();
 		}
 	}
 
     @FXML
-    void recuperarContraseñaVentana(MouseEvent event) {
+    void recuperarContrasenaVentana(MouseEvent event) {
     	try {
-			FXMLLoader loaderRecuperarContraseña=new FXMLLoader(getClass().getResource("/vista/RecuperarContraseña.fxml"));
-			controladorRecuperarContraseña controlRecuperarContraseña=new controladorRecuperarContraseña();
+			FXMLLoader loaderRecuperarContrasena=new FXMLLoader(getClass().getResource("/vista/RecuperarContrasena.fxml"));
+			controladorRecuperarContrasena controlRecuperarContrasena=new controladorRecuperarContrasena();
 
-            loaderRecuperarContraseña.setController(controlRecuperarContraseña);
-            Parent rootRecuperarContraseña=loaderRecuperarContraseña.load();
+            loaderRecuperarContrasena.setController(controlRecuperarContrasena);
+            Parent rootRecuperarContrasena=loaderRecuperarContrasena.load();
             
             Stage stage = new Stage();
 
-            stage.setScene(new Scene(rootRecuperarContraseña));
+            stage.setScene(new Scene(rootRecuperarContrasena));
             stage.show();	
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -123,9 +123,9 @@ public class controladorLoginMedico {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert contraseña != null : "fx:id=\"contraseña\" was not injected: check your FXML file 'Login.fxml'.";
+        assert contrasena != null : "fx:id=\"contrasena\" was not injected: check your FXML file 'Login.fxml'.";
         assert usuario != null : "fx:id=\"usuario\" was not injected: check your FXML file 'Login.fxml'.";
-        assert recuperarContraseña != null : "fx:id=\"recuperarContraseña\" was not injected: check your FXML file 'Login.fxml'.";
+        assert recuperarContrasena != null : "fx:id=\"recuperarContrasena\" was not injected: check your FXML file 'Login.fxml'.";
         assert entrar != null : "fx:id=\"entrar\" was not injected: check your FXML file 'Login.fxml'.";
 
     }

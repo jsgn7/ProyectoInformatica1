@@ -75,7 +75,7 @@ public class controladorRegistroPaciente {
     			encontrado = true;
     		i++;
     	}
-    	medicos.get(i-1).añadirPaciente(paciente);
+    	medicos.get(i-1).anadirPaciente(paciente);
     	medico.modificarMedico(medicos);
     	
     	//Informo al usuario del registro exitoso

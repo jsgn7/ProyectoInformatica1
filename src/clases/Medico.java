@@ -67,7 +67,7 @@ public class Medico {
 		this.respuesta = respuesta;
 	}
 	
-	public void añadirPaciente(Paciente paciente) {
+	public void anadirPaciente(Paciente paciente) {
 		pacientes.add(paciente);
 	}
 
@@ -89,7 +89,7 @@ public class Medico {
     	return medicos;
     }
 	
-	public void añadirMedico(Medico medico) {
+	public void anadirMedico(Medico medico) {
 		Vector<Medico> medicos = recuperarMedicos();
 		medicos.add(medico);
 		

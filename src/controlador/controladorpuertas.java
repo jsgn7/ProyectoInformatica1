@@ -50,7 +50,7 @@ public class controladorpuertas {
 	private TextField tfsensores;
 
 	@FXML
-	private Button añadirbutton;
+	private Button anadirbutton;
 
 	@FXML
 	private Button modificarbutton;
@@ -70,7 +70,7 @@ public class controladorpuertas {
 
 	private int posicionPersonaEnTabla;
 	/**
-	 * Método que realiza las acciones tras pulsar el boton "Añadir"
+	 * Método que realiza las acciones tras pulsar el boton "Anadir"
 	 *
 	 * @param event
 	 */

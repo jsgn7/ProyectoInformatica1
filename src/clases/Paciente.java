@@ -167,7 +167,7 @@ public class Paciente {
 		this.telefono = telefono;
 	}
 	
-	public void añadirPulsacion(int pulso) {
+	public void anadirPulsacion(int pulso) {
 		pulsaciones.add(pulso);
 	}
 	

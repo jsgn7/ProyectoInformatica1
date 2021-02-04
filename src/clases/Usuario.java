@@ -75,8 +75,8 @@ public class Usuario {
 	public String getPass() {
 		return pass;
 	}
-	public void setContraseña(String contraseña) {
-		this.pass = contraseña;
+	public void setContrasena(String contrasena) {
+		this.pass = contrasena;
 	}
 	public String getDni() {
 		return dni;

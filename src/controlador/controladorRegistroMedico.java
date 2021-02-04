@@ -56,7 +56,7 @@ public class controladorRegistroMedico {
     void registrarse(ActionEvent event) {
     	ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
     	Medico medico = new Medico(nombre.getText(),pass.getText(),preguntaSeguridad.getSelectionModel().getSelectedItem().toString(),respuesta.getText(),pacientes);
-    	medico.añadirMedico(medico);
+    	medico.anadirMedico(medico);
     	Alert alert = new Alert(Alert.AlertType.INFORMATION);
 	    alert.setHeaderText(null);
 	    alert.setTitle("Registrado");

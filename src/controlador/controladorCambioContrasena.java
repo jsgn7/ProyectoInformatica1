@@ -25,7 +25,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class controladorCambioContraseña {
+public class controladorCambioContrasena {
 
     @FXML
     private ResourceBundle resources;
@@ -34,46 +34,46 @@ public class controladorCambioContraseña {
     private URL location;
 
     @FXML
-    private JFXButton cambiarContraseñaBoton;
+    private JFXButton cambiarContrasenaBoton;
 
     @FXML
     private Label usuarioEtiqueta;
 
     @FXML
-    private JFXPasswordField cambioContraseña;
+    private JFXPasswordField cambioContrasena;
 
     @FXML
-    private JFXPasswordField CambioContraseñaConfirmar;
+    private JFXPasswordField CambioContrasenaConfirmar;
 
     @FXML
-    void cambioDeContraseña(ActionEvent event) {
-    	if(cambioContraseña.getText().equals(CambioContraseñaConfirmar.getText())) {
+    void cambioDeContrasena(ActionEvent event) {
+    	if(cambioContrasena.getText().equals(CambioContrasenaConfirmar.getText())) {
     	Medico medico = new Medico();
     	Vector<Medico> medicos = medico.recuperarMedicos();
     	int i = 0;
     	boolean encontrado = false;
     	while(i<medicos.size() && !encontrado) {
     		if(medicos.get(i).getNombre().equals(usuarioEtiqueta.getText())) {
-    			medicos.get(i).setPass(cambioContraseña.getText());
+    			medicos.get(i).setPass(cambioContrasena.getText());
     			encontrado = true;
     		} else {
     			int j = 0;
     			while(j<medicos.get(i).getPacientes().size() && !encontrado) {
     				if(medicos.get(i).getPacientes().get(j).getNombre().equals(usuarioEtiqueta.getText())) {
-    					medicos.get(i).getPacientes().get(j).setPass(cambioContraseña.getText());
+    					medicos.get(i).getPacientes().get(j).setPass(cambioContrasena.getText());
     					encontrado = true;
     				}
     			}
     		}
     	}
     	medico.modificarMedico(medicos);
-    	Stage stage = (Stage) cambiarContraseñaBoton.getScene().getWindow();
+    	Stage stage = (Stage) cambiarContrasenaBoton.getScene().getWindow();
     	stage.close();
     	} else {
     		Alert alert = new Alert(Alert.AlertType.ERROR);
     	    alert.setHeaderText(null);
-    	    alert.setTitle("Contraseñas no coinciden");
-    	    alert.setContentText("Las contraseñas no coinciden");
+    	    alert.setTitle("Contrasenas no coinciden");
+    	    alert.setContentText("Las contrasenas no coinciden");
     	    alert.showAndWait();
     	}
     }
@@ -84,10 +84,10 @@ public class controladorCambioContraseña {
 
     @FXML
     void initialize() {
-        assert cambiarContraseñaBoton != null : "fx:id=\"cambiarContraseñaBoton\" was not injected: check your FXML file 'CambioContraseña.fxml'.";
-        assert usuarioEtiqueta != null : "fx:id=\"usuarioEtiqueta\" was not injected: check your FXML file 'CambioContraseña.fxml'.";
-        assert cambioContraseña != null : "fx:id=\"cambioContraseña\" was not injected: check your FXML file 'CambioContraseña.fxml'.";
-        assert CambioContraseñaConfirmar != null : "fx:id=\"CambioContraseñaConfirmar\" was not injected: check your FXML file 'CambioContraseña.fxml'.";
+        assert cambiarContrasenaBoton != null : "fx:id=\"cambiarContrasenaBoton\" was not injected: check your FXML file 'CambioContrasena.fxml'.";
+        assert usuarioEtiqueta != null : "fx:id=\"usuarioEtiqueta\" was not injected: check your FXML file 'CambioContrasena.fxml'.";
+        assert cambioContrasena != null : "fx:id=\"cambioContrasena\" was not injected: check your FXML file 'CambioContrasena.fxml'.";
+        assert CambioContrasenaConfirmar != null : "fx:id=\"CambioContrasenaConfirmar\" was not injected: check your FXML file 'CambioContrasena.fxml'.";
 
     }
 }

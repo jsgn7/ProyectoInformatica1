@@ -30,13 +30,13 @@ public class controladorLoginPaciente {
     private URL location;
 
     @FXML
-    private JFXPasswordField contraseña;
+    private JFXPasswordField contrasena;
 
     @FXML
     private JFXTextField usuario;
 
     @FXML
-    private Label recuperarContraseña;
+    private Label recuperarContrasena;
 
     @FXML
     private JFXButton botonRegistro;
@@ -87,23 +87,23 @@ public class controladorLoginPaciente {
     		Alert alert = new Alert(Alert.AlertType.INFORMATION);
     	    alert.setHeaderText(null);
     	    alert.setTitle("Error de identificacion");
-    	    alert.setContentText("Usuario o contraseña incorrectos");
+    	    alert.setContentText("Usuario o contrasena incorrectos");
     	    alert.showAndWait();
     	}
     }
 
     @FXML
-    void recuperarContraseñaVentana(MouseEvent event) {
+    void recuperarContrasenaVentana(MouseEvent event) {
     	try {
-			FXMLLoader loaderRecuperarContraseña=new FXMLLoader(getClass().getResource("/vista/RecuperarContraseña.fxml"));
-			controladorRecuperarContraseña controlRecuperarContraseña=new controladorRecuperarContraseña();
+			FXMLLoader loaderRecuperarContrasena=new FXMLLoader(getClass().getResource("/vista/RecuperarContrasena.fxml"));
+			controladorRecuperarContrasena controlRecuperarContrasena=new controladorRecuperarContrasena();
 
-            loaderRecuperarContraseña.setController(controlRecuperarContraseña);
-            Parent rootRecuperarContraseña=loaderRecuperarContraseña.load();
+            loaderRecuperarContrasena.setController(controlRecuperarContrasena);
+            Parent rootRecuperarContrasena=loaderRecuperarContrasena.load();
             
             Stage stage = new Stage();
 
-            stage.setScene(new Scene(rootRecuperarContraseña));
+            stage.setScene(new Scene(rootRecuperarContrasena));
             stage.show();	
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -130,9 +130,9 @@ public class controladorLoginPaciente {
 
     @FXML
     void initialize() {
-        assert contraseña != null : "fx:id=\"contraseña\" was not injected: check your FXML file 'LoginPaciente.fxml'.";
+        assert contrasena != null : "fx:id=\"contrasena\" was not injected: check your FXML file 'LoginPaciente.fxml'.";
         assert usuario != null : "fx:id=\"usuario\" was not injected: check your FXML file 'LoginPaciente.fxml'.";
-        assert recuperarContraseña != null : "fx:id=\"recuperarContraseña\" was not injected: check your FXML file 'LoginPaciente.fxml'.";
+        assert recuperarContrasena != null : "fx:id=\"recuperarContrasena\" was not injected: check your FXML file 'LoginPaciente.fxml'.";
         assert botonRegistro != null : "fx:id=\"botonRegistro\" was not injected: check your FXML file 'LoginPaciente.fxml'.";
         assert entrar != null : "fx:id=\"entrar\" was not injected: check your FXML file 'LoginPaciente.fxml'.";
 
