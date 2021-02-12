@@ -62,8 +62,8 @@ public class controladorRegistroPaciente {
     void registrarse(ActionEvent event) {
     	
     	//Creo el paciente (Medico aleatorio , mensajes y pulsaciones vacio
-    	Paciente paciente = new Paciente(nombre.getText(), dni.getText(),pass.getText(),Integer.parseInt(edad.getText()),genero.getSelectionModel().getSelectedItem().toString(),
-    			preguntaSeguridad.getSelectionModel().getSelectedItem().toString(),respuesta.getText(), false, false, false, telefono.getText());
+    	Paciente paciente = new Paciente(nombre.getText(), dni.getText(), pass.getText(), Integer.parseInt(edad.getText()), genero.getSelectionModel().getSelectedItem().toString(),
+    			preguntaSeguridad.getSelectionModel().getSelectedItem().toString(), respuesta.getText(), new ArrayList<Integer>(),false, false, false, false, telefono.getText());
     	
     	//Asigno al medico el paciente y lo guardamos en el Json
     	Medico medico = new Medico();

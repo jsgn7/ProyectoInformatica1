@@ -1,15 +1,12 @@
 package controlador;
-import java.awt.Label;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.Calendar;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
@@ -19,8 +16,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 
+import clases.Medico;
 import clases.Ticket;
-import clases.Usuario;
 import javafx.fxml.FXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -28,21 +25,19 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.SelectionModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-public class controlador_visu_ti_clinico{
+public class controlador_visu_ti_paciente{
 
    // la tabla que contiene todo se llama tablaTickets
    // se pone la clase y el tipo de atributo para cada columna
-	
-	
-	
+
+	String sFile="Ticket.json";
+
 	@FXML
     private TableView<Ticket> tablaTickets;
     
@@ -82,21 +77,36 @@ public class controlador_visu_ti_clinico{
     @FXML
     private TextField estadotxt;
     
-    /*@FXML
+    @FXML
     private Button btnAgregar;
-    */
+    
     @FXML
     private Button btnModificar;
     
-    private String DniGlobalClinico;
+    private String DniGlobalPaciente="Andres";
     
+    private int tamañoLista=0;
     // se crea una lista para despues meterla en la tabla (esta es la lista base y luego se va agregando)
     ObservableList<Ticket> lista=FXCollections.observableArrayList(
     		//new Ticket("1","01","02","2","2"),
     		//new Ticket("2","01","02","03","05"),
     		//new Ticket("3","01","02","03","05")
+    		
     		);
-    
+
+    // Pasar de Aquí a JSO
+    private static void ticketAJson(Ticket ticket,String sJson){
+    	Gson gson=new GsonBuilder().setPrettyPrinting().create();
+    	try(FileWriter writer= new FileWriter(sJson)){
+    		gson.toJson(ticket,writer);
+    	}
+    	catch(IOException e) {
+    		e.printStackTrace();
+    	}
+    }
+  
+ // Pasar de JSON a Aquí
+
     public Vector<Ticket> desserializarJsonAArray() {
 		Vector<Ticket> Vectics = new Vector<Ticket>();
 		
@@ -111,44 +121,19 @@ public class controlador_visu_ti_clinico{
 		return Vectics;
 	}
     
-    // Pasar de Aquí a JSON
-    private static void ticketAJson(Ticket ticket,String sJson){
-    	Gson gson=new GsonBuilder().setPrettyPrinting().create();
-    	try(FileWriter writer= new FileWriter(sJson)){
-    		gson.toJson(ticket,writer);
-    	}
-    	catch(IOException e) {
-    		e.printStackTrace();
-    	}
-    }
-  
- // Pasar de JSON a Aquí
-    @FXML
-    private static Ticket JsonAticket(String sJson) {
-    	Gson gson= new Gson();
-    	Ticket ticket=new Ticket();
-    	try(Reader reader=new FileReader(sJson)){
-    		ticket=gson.fromJson(reader,Ticket.class);
-    	}
-    	catch(IOException e) {
-    		e.printStackTrace();
-    	}
-    	return ticket;
-    } 
-    // convertir el json en un string para visualizarlo
-    @FXML
-    private static String jsonAelemento(String sJson) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String jsonInString = new String();
-        try (Reader reader = new FileReader(sJson)) {		
-            JsonElement json = gson.fromJson(reader, JsonElement.class);
-            //Ahora lo podriamos convertir a lo que nos interese
-            jsonInString = gson.toJson(json);
+    public Vector<Medico> desserializarJsonAArrayMedico() {
+		Vector<Medico> Vectmeds = new Vector<Medico>();
+		
+		try (Reader reader = new FileReader("medicos.json")) {
+			Gson gson = new Gson();
+			Type tipoListaMedicos = new TypeToken<Vector<Medico>>(){}.getType();
+			Vectmeds = gson.fromJson(reader, tipoListaMedicos);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return jsonInString;
+		return Vectmeds;
 	}
+    
     
     public void actualizarTabla() {
     	tablaTickets.getItems().clear();
@@ -169,96 +154,94 @@ public class controlador_visu_ti_clinico{
 		// esos tickets
 		
 		ArrayList<Ticket> arraylista = new ArrayList<Ticket>(vecTicsNuevo);
-		
+    	pacientetxt.setText(DniGlobalPaciente);
 		for(int j=0;j<arraylista.size();j++) {
 			System.out.println(arraylista.get(j));
 		}
 		
-		DniGlobalClinico="301A";
+		DniGlobalPaciente="Andres";
 		if(vecTicsNuevo!=null) {
 			for(int i=0;i<arraylista.size();i++) {
-				if(arraylista.get(i).DNIdoctor.equals(DniGlobalClinico)) {
+				if(arraylista.get(i).DNIpaciente.equals(DniGlobalPaciente)) {
 			    Ticket tii=new Ticket();
 				tii=arraylista.get(i);
 				lista.add(tii);
 				}
 			  }
 			}
-	}
-    
-    @FXML	
+    }
+    @FXML
     public void initialize() {
     	
+    	//darle la lista de tickets a la tabla -> y con propertyvaluefactory -> agarrar de la propiedad de la clase
     	actualizarTabla();
-		
-	}
-		 
-    /*@FXML
+		}
+    
+    @FXML
     void AgregarTicket(ActionEvent event) {
-    	if(codigotxt.getText().isEmpty()|| pacientetxt.getText().isEmpty() || clinicotxt.getText().isEmpty() || respuestatxt.getText().isEmpty()) 
+    	
+    	boolean medicoExiste=true;
+    	
+    	if(clinicotxt.getText().isEmpty()) 
     	{
     		JOptionPane.showMessageDialog(null, "Llena todos los campos por favor");	
     	}
     	else 
     	{
-    	lista.add(new Ticket(codigotxt.getText(),
-    						pacientetxt.getText(),
-    						clinicotxt.getText(),
-    						descripciontxt.getText(),
-    						respuestatxt.getText())
-    			);
-    	}
-    	}*/
-    @FXML
-    void ModificarTicket(ActionEvent event) {
-    	if(codigotxt.getText().isEmpty() && respuestatxt.getText().isEmpty() || respuestatxt.getText().isEmpty()) {
-    		JOptionPane.showMessageDialog(null, "Llena la respuesta o elige un ticket por favor ");
-    	}
-    	else {
-    		
-        	Vector<Ticket> vecTicsTicket  = new Vector<Ticket>();
-        	
-        	vecTicsTicket=desserializarJsonAArray(); 
-        	
-    		ArrayList<Ticket> arraylista3 = new ArrayList<Ticket>(vecTicsTicket);
-
-    		for(int zz=0;zz<arraylista3.size();zz++) {
-    			if(arraylista3.get(zz).getCodigoTicket()==Integer.parseInt(codigotxt.getText())) {
-    			arraylista3.get(zz).setRespuesta(respuestatxt.getText());
-    			}	
-    		}
-    		
-        	//aqui lo agrego a la tabla visual
-    		
-    		//lista.add(nuevoTicket);		
-    		//arraylista3.add(nuevoTicket);
-    		
-    		Vector<Ticket> vNumbers = new Vector<Ticket>( arraylista3 );
-
-    		
+    	respuestatxt.setText("");
     	
-    		/*lista.set(tablaTickets.getSelectionModel().getSelectedIndex(), new Ticket(
-    			Integer.parseInt(codigotxt.getText()),
-    			pacientetxt.getText(),
+    	
+
+    	Vector<Ticket> vecTicsNuevoTicket = new Vector<Ticket>();
+    	
+    	vecTicsNuevoTicket=desserializarJsonAArray(); 
+    	
+		ArrayList<Ticket> arraylista3 = new ArrayList<Ticket>(vecTicsNuevoTicket);
+
+		tamañoLista=arraylista3.size();
+		
+		Vector<Medico> vecTicsNuevoMedico = new Vector<Medico>();
+    	vecTicsNuevoMedico=desserializarJsonAArrayMedico(); 
+    	ArrayList<Medico> arraylistaMedico = new ArrayList<Medico>(vecTicsNuevoMedico);
+    	
+    	//pacientes": ["52525252D"]
+    	for(int aaa=0;aaa<arraylistaMedico.size();aaa++) {
+    		if(arraylistaMedico.get(aaa).getNombre().equals(clinicotxt.getText().replace(" ","")) ) {
+    			medicoExiste=false;
+    		}
+    	}
+		if(medicoExiste==true) {
+    	tamañoLista+=1;
+    	Ticket nuevoTicket=new Ticket(tamañoLista,
+				pacientetxt.getText(),
 				clinicotxt.getText(),
 				descripciontxt.getText(),
-				respuestatxt.getText()
-    			));
-    	*/
+				respuestatxt.getText());
+    	
 
+    	//aqui lo agrego a la tabla visual
+		
+		lista.add(nuevoTicket);		
+		arraylista3.add(nuevoTicket);
+		
+		Vector<Ticket> vNumbers = new Vector<Ticket>( arraylista3 );
+    	
 		Gson prettyGson=new GsonBuilder().setPrettyPrinting().create();
 		
 		try(FileWriter writer=new FileWriter("tickets_2.json")){
-			prettyGson.toJson(vNumbers,writer);
+			prettyGson.toJson(vNumbers,writer); 
 		}
 		catch(IOException e) {
 			e.printStackTrace();
 		}
 		actualizarTabla();
 	  }
+		else {
+			JOptionPane.showMessageDialog(null, "Escoge un clinico que exista");
+		}
+	 }
     }
-    
-    //PEQUEÑO CAMBIO
+
     @FXML
     void clicItem1(MouseEvent event) {
     	Ticket filaTicket=tablaTickets.getSelectionModel().getSelectedItem();
@@ -268,13 +251,8 @@ public class controlador_visu_ti_clinico{
     	descripciontxt.setText(filaTicket.getDescripcion());
     	respuestatxt.setText(filaTicket.getRespuesta());
     	
-    	codigotxt.setDisable(true);
-    	pacientetxt.setDisable(true);
-    	clinicotxt.setDisable(true);
-    	descripciontxt.setDisable(true);
+    	respuestatxt.setDisable(true);
     }
-    
-    
     
     
 }

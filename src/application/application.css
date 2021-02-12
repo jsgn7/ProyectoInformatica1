@@ -4,6 +4,10 @@
 	-fx-background-color : white;
 }
 
+.barraLateralPulsaciones{
+	-fx-background-color : aquamarine;
+}
+
 .panelPrincipal{
 	-fx-background-color: aquamarine;
 }

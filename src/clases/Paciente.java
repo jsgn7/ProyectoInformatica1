@@ -1,6 +1,7 @@
 package clases;
 
 import java.io.FileReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
@@ -25,6 +26,7 @@ public class Paciente {
 	private String respuesta;
 	private ArrayList<Integer> pulsaciones;
 	private ArrayList<String> tickets;
+	private boolean ambulancia;
 	private boolean sensorPuerta;
 	private boolean sensor1;
 	private boolean sensor2;
@@ -37,7 +39,7 @@ public class Paciente {
 	}
 	
 	public Paciente(String nombre, String dni, String pass, int edad, String genero, String preguntaSeguridad, String respuesta,
-			boolean sensorPuerta, boolean sensor1, boolean sensor2, String telefono) {
+			ArrayList<Integer> pulsaciones, boolean ambulancia, boolean sensorPuerta, boolean sensor1, boolean sensor2, String telefono) {
 		this.nombre = nombre;
 		this.dni = dni;
 		this.pass = pass;
@@ -45,12 +47,13 @@ public class Paciente {
 		this.genero = genero;
 		this.preguntaSeguridad = preguntaSeguridad;
 		this.respuesta = respuesta;
+		this.pulsaciones = pulsaciones;
+		this.ambulancia = ambulancia;
 		this.sensorPuerta = sensorPuerta;
 		this.sensor1 = sensor1;
 		this.sensor2 = sensor2;
 		this.telefono = telefono;
 		medico = medicoAleatorio();
-		pulsaciones = new ArrayList<Integer>();
 		tickets = new ArrayList<String>();
 	}
 
@@ -141,6 +144,14 @@ public class Paciente {
 
 	public void setSensorPuerta(boolean sensorPuerta) {
 		this.sensorPuerta = sensorPuerta;
+	}
+	
+	public boolean isAmbulancia() {
+		return ambulancia;
+	}
+
+	public void setAmbulancia(boolean ambulancia) {
+		this.ambulancia = ambulancia;
 	}
 
 	public boolean isSensor1() {

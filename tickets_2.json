@@ -1,16 +1,128 @@
 [
   {
     "codigoTicket": 1,
-    "DNIpaciente": "andres",
-    "DNIdoctor": "Pablo",
-    "descripcion": "Me duele la cabeza",
-    "respuesta": "toma una pastilla"
+    "DNIpaciente": "Andres",
+    "DNIdoctor": "11203A",
+    "descripcion": "Me duele todo",
+    "respuesta": ""
   },
   {
     "codigoTicket": 2,
-    "DNIpaciente": "carlos ",
-    "DNIdoctor": "Pablo",
-    "descripcion": "Me duele el pie",
-    "respuesta": "parate bien"
+    "DNIpaciente": "Andres",
+    "DNIdoctor": "11203A",
+    "descripcion": "Me duele todo",
+    "respuesta": ""
+  },
+  {
+    "codigoTicket": 3,
+    "DNIpaciente": "Andres",
+    "DNIdoctor": "11203A",
+    "descripcion": "133333333",
+    "respuesta": "a"
+  },
+  {
+    "codigoTicket": 4,
+    "DNIpaciente": "2",
+    "DNIdoctor": "2",
+    "descripcion": "2",
+    "respuesta": "e"
+  },
+  {
+    "codigoTicket": 5,
+    "DNIpaciente": "rodrigo",
+    "DNIdoctor": "1011",
+    "descripcion": "Debe funcionar",
+    "respuesta": "r"
+  },
+  {
+    "codigoTicket": 6,
+    "DNIpaciente": "santo",
+    "DNIdoctor": "1011",
+    "descripcion": "gaaaaaaaaaaaaa",
+    "respuesta": "t"
+  },
+  {
+    "codigoTicket": 7,
+    "DNIpaciente": "Andres",
+    "DNIdoctor": "301A",
+    "descripcion": "Aparece",
+    "respuesta": "jojojoojoojoo"
+  },
+  {
+    "codigoTicket": 8,
+    "DNIpaciente": "Andres",
+    "DNIdoctor": "3000",
+    "descripcion": "prueba primera",
+    "respuesta": ""
+  },
+  {
+    "codigoTicket": 9,
+    "DNIpaciente": "Andres",
+    "DNIdoctor": "10c",
+    "descripcion": "deberia ser 9",
+    "respuesta": ""
+  },
+  {
+    "codigoTicket": 10,
+    "DNIpaciente": "Andres",
+    "DNIdoctor": "400B",
+    "descripcion": "deberia ser 10",
+    "respuesta": ""
+  },
+  {
+    "codigoTicket": 11,
+    "DNIpaciente": "Andres",
+    "DNIdoctor": "hola",
+    "descripcion": "aaaaa",
+    "respuesta": ""
+  },
+  {
+    "codigoTicket": 12,
+    "DNIpaciente": "Andres",
+    "DNIdoctor": "aaa",
+    "descripcion": "aaaa",
+    "respuesta": ""
+  },
+  {
+    "codigoTicket": 13,
+    "DNIpaciente": "Andres",
+    "DNIdoctor": "hola",
+    "descripcion": "hola",
+    "respuesta": ""
+  },
+  {
+    "codigoTicket": 14,
+    "DNIpaciente": "Andres",
+    "DNIdoctor": "ad2",
+    "descripcion": "123",
+    "respuesta": ""
+  },
+  {
+    "codigoTicket": 15,
+    "DNIpaciente": "Andres",
+    "DNIdoctor": "asdas",
+    "descripcion": "sdd",
+    "respuesta": ""
+  },
+  {
+    "codigoTicket": 16,
+    "DNIpaciente": "Andres",
+    "DNIdoctor": "Pedro Gonzalez",
+    "descripcion": "ESTO DEBERIA APARECER X2",
+    "respuesta": ""
+  },
+  {
+    "codigoTicket": 17,
+    "DNIpaciente": "Andres",
+    "DNIdoctor": "Pedro Gonzales",
+    "descripcion": "hola nuevo",
+    "respuesta": ""
+  },
+  {
+    "codigoTicket": 18,
+    "DNIpaciente": "Andres",
+    "DNIdoctor": "Pedro Gonzales",
+    "descripcion": "aea",
+    "respuesta": ""
   }
 ]

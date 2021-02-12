@@ -34,7 +34,7 @@
       </AnchorPane>
       <AnchorPane layoutY="166.0" prefHeight="516.0" prefWidth="519.0" style="-fx-border-color: black;">
          <children>
-            <TableView fx:id="tablaTickets" onMouseClicked="#clicItem" prefHeight="646.0" prefWidth="737.0">
+            <TableView fx:id="tablaTickets" onMouseClicked="#clicItem1" prefHeight="646.0" prefWidth="737.0">
               <columns>
                 <TableColumn fx:id="codigoColumna" prefWidth="75.0" text="Codigo" />
                 <TableColumn fx:id="pacienteColumna" prefWidth="75.0" text="Paciente" />

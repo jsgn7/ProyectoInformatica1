@@ -34,7 +34,7 @@
       </AnchorPane>
       <AnchorPane layoutY="166.0" prefHeight="516.0" prefWidth="519.0" style="-fx-border-color: black;">
          <children>
-            <TableView fx:id="tablaTickets" onMouseClicked="#clicItem" prefHeight="646.0" prefWidth="737.0">
+            <TableView fx:id="tablaTickets" onMouseClicked="#clicItem1" prefHeight="646.0" prefWidth="737.0">
               <columns>
                 <TableColumn fx:id="codigoColumna" prefWidth="75.0" text="Codigo" />
                 <TableColumn fx:id="pacienteColumna" prefWidth="75.0" text="Paciente" />
@@ -53,7 +53,7 @@
             <Label layoutX="20.0" layoutY="167.0" text="Descripción" />
             <Label layoutX="21.0" layoutY="276.0" text="Respuesta " />
             <TextField fx:id="codigotxt" layoutX="100.0" layoutY="28.0" style="-fx-border-color: black;" />
-            <TextField fx:id="pacientetxt" layoutX="100.0" layoutY="73.0" style="-fx-border-color: black;" />
+            <TextField fx:id="pacientetxt" disable="true" layoutX="100.0" layoutY="73.0" style="-fx-border-color: black;" />
             <TextField fx:id="clinicotxt" layoutX="100.0" layoutY="117.0" style="-fx-border-color: black;" />
             <TextField fx:id="descripciontxt" layoutX="100.0" layoutY="164.0" prefHeight="92.0" prefWidth="355.0" style="-fx-border-color: black;" />
             <TextField fx:id="respuestatxt" disable="true" layoutX="100.0" layoutY="278.0" prefHeight="92.0" prefWidth="355.0" style="-fx-border-color: black;" />

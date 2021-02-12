@@ -88,7 +88,20 @@ public class controladorMenuSeleccionMedicos {
     
     @FXML
     void clickPulsaciones(ActionEvent event) {
+    	try {
+			FXMLLoader loaderPulsaciones =new FXMLLoader(getClass().getResource("/vista/Pulsaciones.fxml"));
+			controladorPulsaciones controlPulsaciones = new controladorPulsaciones();
 
+            loaderPulsaciones.setController(controlPulsaciones);
+            Parent rootPulsaciones = loaderPulsaciones.load();
+            
+            Stage stage = new Stage();
+
+            stage.setScene(new Scene(rootPulsaciones));
+            stage.show();	
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
     }
 
     @FXML
