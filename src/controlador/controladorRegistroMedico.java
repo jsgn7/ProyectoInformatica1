@@ -10,7 +10,6 @@ import com.jfoenix.controls.JFXTextField;
 
 import clases.Medico;
 import clases.Paciente;
-import clases.Usuario;
 
 import java.io.FileReader;
 import java.io.FileWriter;

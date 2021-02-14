@@ -86,6 +86,8 @@ public class controladorLoginMedico {
 	            loaderMenuSeleccion.setController(controlMenuSeleccion);
 	            Parent rootMenuSeleccion=loaderMenuSeleccion.load();
 	            
+	            controlMenuSeleccion.setMedico(usuario.getText());
+	            
 	            Stage stage = new Stage();
 
 	            stage.setScene(new Scene(rootMenuSeleccion));

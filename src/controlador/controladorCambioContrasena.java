@@ -8,7 +8,6 @@ import com.jfoenix.controls.JFXPasswordField;
 
 import clases.Medico;
 import clases.Paciente;
-import clases.Usuario;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -62,7 +61,9 @@ public class controladorCambioContrasena {
     				if(medicos.get(i).getPacientes().get(j).getNombre().equals(usuarioEtiqueta.getText())) {
     					medicos.get(i).getPacientes().get(j).setPass(cambioContrasena.getText());
     					encontrado = true;
+    					j++;
     				}
+    				i++;
     			}
     		}
     	}

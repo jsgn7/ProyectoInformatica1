@@ -1,5 +1,4 @@
 package controlador;
-
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -8,10 +7,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class controladorMenuSeleccionMedicos {
-
 
     @FXML
     private ResourceBundle resources;
@@ -20,30 +19,31 @@ public class controladorMenuSeleccionMedicos {
     private URL location;
 
     @FXML
+    private Label doctor;
+
+    @FXML
     private JFXButton botonTickets;
 
     @FXML
     private JFXButton botonSensores;
 
     @FXML
-    private JFXButton botonSensoresPuertas;
-
-    @FXML
     private JFXButton botonPulsaciones;
 
-
+    private String medico;
+    
     @FXML
-    void clickSensores(ActionEvent event) {
+    void clickPulsaciones(ActionEvent event) {
     	try {
-			FXMLLoader loaderSensorPac=new FXMLLoader(getClass().getResource("/vista/sensorespaciente.fxml"));
-			controladorsensorpaciente controlSensorPac=new controladorsensorpaciente();
+			FXMLLoader loaderPulsaciones =new FXMLLoader(getClass().getResource("/vista/Pulsaciones.fxml"));
+			controladorPulsaciones controlPulsaciones = new controladorPulsaciones();
 
-            loaderSensorPac.setController(controlSensorPac);
-            Parent rootSensorPac=loaderSensorPac.load();
+            loaderPulsaciones.setController(controlPulsaciones);
+            Parent rootPulsaciones = loaderPulsaciones.load();
             
             Stage stage = new Stage();
 
-            stage.setScene(new Scene(rootSensorPac));
+            stage.setScene(new Scene(rootPulsaciones));
             stage.show();	
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -51,17 +51,19 @@ public class controladorMenuSeleccionMedicos {
     }
 
     @FXML
-    void clickSensoresPuertas(ActionEvent event) {
+    void clickSensores(ActionEvent event) {
     	try {
-			FXMLLoader loaderControlPuertas = new FXMLLoader(getClass().getResource("/vista/controlpuertas.fxml"));
-			controladorpuertas controlControlPuertas = new controladorpuertas();
+			FXMLLoader loaderSensorPac=new FXMLLoader(getClass().getResource("/vista/sensorespaciente.fxml"));
+			controladorSensorPaciente controlSensorPac=new controladorSensorPaciente();
 
-            loaderControlPuertas.setController(controlControlPuertas);
-            Parent rootControlPuertas = loaderControlPuertas.load();
+            loaderSensorPac.setController(controlSensorPac);
+            Parent rootSensorPac=loaderSensorPac.load();
+            
+            controlSensorPac.setMedico(medico);
             
             Stage stage = new Stage();
 
-            stage.setScene(new Scene(rootControlPuertas));
+            stage.setScene(new Scene(rootSensorPac));
             stage.show();	
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -86,26 +88,17 @@ public class controladorMenuSeleccionMedicos {
 		}
     }
     
-    @FXML
-    void clickPulsaciones(ActionEvent event) {
-    	try {
-			FXMLLoader loaderPulsaciones =new FXMLLoader(getClass().getResource("/vista/Pulsaciones.fxml"));
-			controladorPulsaciones controlPulsaciones = new controladorPulsaciones();
-
-            loaderPulsaciones.setController(controlPulsaciones);
-            Parent rootPulsaciones = loaderPulsaciones.load();
-            
-            Stage stage = new Stage();
-
-            stage.setScene(new Scene(rootPulsaciones));
-            stage.show();	
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+    void setMedico(String medico) {
+    	this.doctor.setText(doctor.getText() + medico);
+    	this.medico = medico;
     }
 
     @FXML
     void initialize() {
-    	
+        assert doctor != null : "fx:id=\"doctor\" was not injected: check your FXML file 'MenuSeleccion.fxml'.";
+        assert botonTickets != null : "fx:id=\"botonTickets\" was not injected: check your FXML file 'MenuSeleccion.fxml'.";
+        assert botonSensores != null : "fx:id=\"botonSensores\" was not injected: check your FXML file 'MenuSeleccion.fxml'.";
+        assert botonPulsaciones != null : "fx:id=\"botonPulsaciones\" was not injected: check your FXML file 'MenuSeleccion.fxml'.";
+
     }
 }

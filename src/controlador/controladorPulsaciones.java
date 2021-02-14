@@ -1,6 +1,5 @@
 package controlador;
 
-//import java.awt.Label;
 import java.util.Vector;
 
 import clases.Medico;
@@ -10,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -20,8 +20,11 @@ import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 
 public class controladorPulsaciones {
+	private Vector<Medico> medicos;
+	private int indexPaciente;
+	
 	@FXML
-    private Label textoNombre;
+    private ChoiceBox<String> choiceBoxPaciente;
 	
 	@FXML
     private Label textoGenero;
@@ -44,8 +47,7 @@ public class controladorPulsaciones {
 	@FXML
 	void clickAmbulancia() {
 		Medico medico = new Medico();
-    	Vector<Medico> medicos = medico.recuperarMedicos();
-    	medicos.get(0).getPacientes().get(0).setAmbulancia(true);
+    	this.medicos.get(0).getPacientes().get(this.indexPaciente).setAmbulancia(true);
     	medico.modificarMedico(medicos);
 	}
 	
@@ -58,9 +60,22 @@ public class controladorPulsaciones {
 	@FXML
     void initialize() {
 		Medico medico = new Medico();
-    	Vector<Medico> medicos = medico.recuperarMedicos();
-    	Paciente paciente = medicos.get(0).getPacientes().get(0);
-    	textoNombre.setText(paciente.getNombre());
+    	this.medicos = medico.recuperarMedicos();
+    	ArrayList<Paciente> pacientes = this.medicos.get(0).getPacientes();
+    	for (int i = 0; i < pacientes.size(); i++) {
+    		choiceBoxPaciente.getItems().add(pacientes.get(i).getNombre());
+    	}
+    	
+    	choiceBoxPaciente.setOnAction((event) -> {
+    	    this.indexPaciente = choiceBoxPaciente.getSelectionModel().getSelectedIndex();
+    	    obtenerDatos(this.indexPaciente);
+    	});
+    }
+	
+	void obtenerDatos(int indexPaciente) {
+		Paciente paciente = this.medicos.get(0).getPacientes().get(indexPaciente);
+    	
+		 
     	textoGenero.setText(paciente.getGenero());
     	textoEdad.setText(String.valueOf(paciente.getEdad() + " años"));
     	
@@ -71,6 +86,7 @@ public class controladorPulsaciones {
         	pulsaciones.getData().add(new XYChart.Data<>(i, pulsacionesList.get(i)));
         }
 
+        chartPulsaciones.getData().clear();
         chartPulsaciones.getData().add(pulsaciones);
-    }
+	}
 }

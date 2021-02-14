@@ -1,83 +1,44 @@
 package controlador;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextArea;
-
-import clases.Paciente;
-
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.Vector;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TextArea;
 
 public class controladorTicketPaciente {
 
-	@FXML
-	private ResourceBundle resources;
+    @FXML
+    private ResourceBundle resources;
 
-	@FXML
-	private URL location;
+    @FXML
+    private URL location;
 
-	@FXML
-	private Label etiquetaNombrePaciente;
+    @FXML
+    private Label medico;
 
-	@FXML
-	private Label etiquetaDniPaciente;
+    @FXML
+    private TextArea pregunta;
 
-	@FXML
-	private Label etiquetaMedico;
+    @FXML
+    private TextArea respuesta;
 
-	@FXML
-	private JFXTextArea pregunta;
+    @FXML
+    private JFXButton botonResponder;
 
-	@FXML
-	private JFXTextArea respuesta;
+    @FXML
+    void responder(ActionEvent event) {
+    	
+    }
 
-	@FXML
-	private JFXButton botonRespuesta;
+    @FXML
+    void initialize() {
+        assert medico != null : "fx:id=\"medico\" was not injected: check your FXML file 'TicketsPaciente.fxml'.";
+        assert pregunta != null : "fx:id=\"pregunta\" was not injected: check your FXML file 'TicketsPaciente.fxml'.";
+        assert respuesta != null : "fx:id=\"respuesta\" was not injected: check your FXML file 'TicketsPaciente.fxml'.";
+        assert botonResponder != null : "fx:id=\"botonResponder\" was not injected: check your FXML file 'TicketsPaciente.fxml'.";
 
-	@FXML
-	private TreeTableColumn<?, ?> tablaMensajes;
-
-
-	@FXML
-	void anterior(ActionEvent event) {
-
-	}
-
-	@FXML
-	void responder(ActionEvent event) {
-		
-	}
-
-	@FXML
-	void siguiente(ActionEvent event) {
-
-	}
-
-	public void dniPaciente(String dni) {
-		etiquetaDniPaciente.setText(dni);
-	}
-
-	public void nombrePaciente(String nombrePacienteActual) {
-		etiquetaNombrePaciente.setText(nombrePacienteActual);
-	}
-
-	public void doctor(String nombreDoctor) {
-		etiquetaMedico.setText(etiquetaMedico.getText() + nombreDoctor);
-	}
-
-	public void setPregunta(String texto) {
-		pregunta.setText(texto);
-	}
-
-	@FXML
-	void initialize() {
-		
-	}
+    }
 }

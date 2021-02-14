@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,8 +15,8 @@
    <children>
       <GridPane layoutX="250.0" layoutY="245.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="200.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="611.0" minWidth="10.0" prefWidth="400.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="400.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -23,11 +24,21 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="barraLateral" stylesheets="@../application/application.css">
                <children>
+                  <Label text="Seleccione que quiere visualizar">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Imagenes/LOF.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="doctor" text="Dr:  ">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
             <GridPane GridPane.columnIndex="1">
@@ -37,7 +48,6 @@
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
@@ -60,15 +70,6 @@
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
-                     <children>
-                        <JFXButton fx:id="botonSensoresPuertas" buttonType="RAISED" onAction="#clickSensoresPuertas" styleClass="botonLoginRegistro" stylesheets="@../application/application.css" text="Sensor Puertas">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </JFXButton>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
                      <children>
                         <JFXButton fx:id="botonPulsaciones" onAction="#clickPulsaciones" styleClass="botonLoginRegistro" stylesheets="@../application/application.css" text="Pulsaciones">
                            <font>

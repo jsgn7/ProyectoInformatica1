@@ -4,28 +4,36 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane prefHeight="600.0" prefWidth="800.0">
+      <GridPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="200.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="611.0" minWidth="10.0" prefWidth="400.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="400.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
+            <LineChart fx:id="chartPulsaciones" createSymbols="false" GridPane.columnIndex="1">
+              <xAxis>
+                <NumberAxis side="BOTTOM" fx:id="xAxis" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="yAxis" side="LEFT" />
+              </yAxis>
+            </LineChart>
             <GridPane styleClass="barraLateralPulsaciones" stylesheets="@../application/application.css">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -36,17 +44,13 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0">
-                           <center>
-                              <ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                 <image>
-                                    <Image url="@../../Imagenes/logoPulsaciones.png" />
-                                 </image>
-                              </ImageView>
-                           </center>
-                        </BorderPane>
+                        <ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Imagenes/logoPulsaciones.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </VBox>
                   <GridPane GridPane.rowIndex="1">
@@ -59,11 +63,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="textoNombre" text="" GridPane.halignment="CENTER">
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </Label>
+                        <ChoiceBox fx:id="choiceBoxPaciente" prefWidth="150.0" GridPane.halignment="CENTER" />
                         <Label fx:id="textoGenero" text="" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets />
@@ -99,17 +99,6 @@
                   </GridPane>
                </children>
             </GridPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-               <center>
-                  <LineChart fx:id="chartPulsaciones" createSymbols="false" BorderPane.alignment="CENTER">
-                    <xAxis>
-                      <NumberAxis side="BOTTOM" fx:id="xAxis" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis fx:id="yAxis" side="LEFT" />
-                    </yAxis>
-                  </LineChart>
-               </center></BorderPane>
          </children>
       </GridPane>
    </children>

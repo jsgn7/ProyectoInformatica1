@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import clases.Encargado;
 import clases.Medico;
 import clases.Paciente;
 
@@ -17,6 +18,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
@@ -63,7 +67,7 @@ public class controladorRegistroPaciente {
     	
     	//Creo el paciente (Medico aleatorio , mensajes y pulsaciones vacio
     	Paciente paciente = new Paciente(nombre.getText(), dni.getText(), pass.getText(), Integer.parseInt(edad.getText()), genero.getSelectionModel().getSelectedItem().toString(),
-    			preguntaSeguridad.getSelectionModel().getSelectedItem().toString(), respuesta.getText(), new ArrayList<Integer>(),false, false, false, false, telefono.getText());
+    			preguntaSeguridad.getSelectionModel().getSelectedItem().toString(), respuesta.getText(), new ArrayList<Integer>(),false, telefono.getText());
     	
     	//Asigno al medico el paciente y lo guardamos en el Json
     	Medico medico = new Medico();
@@ -78,14 +82,25 @@ public class controladorRegistroPaciente {
     	medicos.get(i-1).anadirPaciente(paciente);
     	medico.modificarMedico(medicos);
     	
-    	//Informo al usuario del registro exitoso
-    	Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    	alert.setHeaderText(null);
-	    alert.setTitle("Registrado");
-	    alert.setContentText("Registrado con exito\nSu medico asociado es: " + paciente.getMedico());
-	    alert.showAndWait();
-    	Stage stage = (Stage) botonRegistroFin.getScene().getWindow();
-    	stage.close();
+    	try {
+			FXMLLoader loaderRegistroEncargado = new FXMLLoader(getClass().getResource("/vista/RegistroEncargado.fxml"));
+			controladorRegistroEncargado controlRegistroEncargado = new controladorRegistroEncargado();
+
+            loaderRegistroEncargado.setController(controlRegistroEncargado);
+            
+            Parent rootRegistroEncargado=loaderRegistroEncargado.load();
+            
+            controlRegistroEncargado.setPaciente(paciente.getNombre());
+            
+            Stage stage = new Stage();
+
+            stage.setScene(new Scene(rootRegistroEncargado));
+            
+            stage.show();
+            
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
     	
     }
 

@@ -27,19 +27,19 @@ public class Paciente {
 	private ArrayList<Integer> pulsaciones;
 	private ArrayList<String> tickets;
 	private boolean ambulancia;
-	private boolean sensorPuerta;
-	private boolean sensor1;
-	private boolean sensor2;
+	private ArrayList<Boolean> sensores;
+	private boolean respiracion;
 	private String telefono;
 	private String medico;
-	
+	private Encargado encargado;
+
 	//Constructor
 	public Paciente() {
 		
 	}
 	
 	public Paciente(String nombre, String dni, String pass, int edad, String genero, String preguntaSeguridad, String respuesta,
-			ArrayList<Integer> pulsaciones, boolean ambulancia, boolean sensorPuerta, boolean sensor1, boolean sensor2, String telefono) {
+			ArrayList<Integer> pulsaciones, boolean ambulancia, String telefono) {
 		this.nombre = nombre;
 		this.dni = dni;
 		this.pass = pass;
@@ -49,12 +49,36 @@ public class Paciente {
 		this.respuesta = respuesta;
 		this.pulsaciones = pulsaciones;
 		this.ambulancia = ambulancia;
-		this.sensorPuerta = sensorPuerta;
-		this.sensor1 = sensor1;
-		this.sensor2 = sensor2;
 		this.telefono = telefono;
+		sensores = sensoresAleatorios();
+		respiracion = true;
 		medico = medicoAleatorio();
 		tickets = new ArrayList<String>();
+		this.encargado = new Encargado();
+	}
+	
+	public boolean isRespiracion() {
+		return respiracion;
+	}
+
+	public void setRespiracion(boolean respiracion) {
+		this.respiracion = respiracion;
+	}
+
+	public ArrayList<Boolean> getSensores() {
+		return sensores;
+	}
+
+	public void setSensores(ArrayList<Boolean> sensores) {
+		this.sensores = sensores;
+	}
+
+	public Encargado getEncargado() {
+		return encargado;
+	}
+
+	public void setEncargado(Encargado encargado) {
+		this.encargado = encargado;
 	}
 
 	public ArrayList<String> getTickets() {
@@ -137,14 +161,6 @@ public class Paciente {
 	public void setPulsaciones(ArrayList<Integer> pulsaciones) {
 		this.pulsaciones = pulsaciones;
 	}
-
-	public boolean isSensorPuerta() {
-		return sensorPuerta;
-	}
-
-	public void setSensorPuerta(boolean sensorPuerta) {
-		this.sensorPuerta = sensorPuerta;
-	}
 	
 	public boolean isAmbulancia() {
 		return ambulancia;
@@ -152,22 +168,6 @@ public class Paciente {
 
 	public void setAmbulancia(boolean ambulancia) {
 		this.ambulancia = ambulancia;
-	}
-
-	public boolean isSensor1() {
-		return sensor1;
-	}
-
-	public void setSensor1(boolean sensor1) {
-		this.sensor1 = sensor1;
-	}
-
-	public boolean isSensor2() {
-		return sensor2;
-	}
-
-	public void setSensor2(boolean sensor2) {
-		this.sensor2 = sensor2;
 	}
 
 	public String getTelefono() {
@@ -187,6 +187,16 @@ public class Paciente {
 		Vector<Medico> medicos = medico.recuperarMedicos();
 		Random random = new Random();
 		return medicos.get(random.nextInt(medicos.size())).getNombre();
+	}
+	
+	public ArrayList<Boolean> sensoresAleatorios(){
+		Random random = new Random();
+		ArrayList<Boolean> sensores = new ArrayList<Boolean>();
+		for(int i = 0; i<5 ; i++) {
+			sensores.add(false);
+		}
+		sensores.set(random.nextInt(sensores.size()), true);
+		return sensores;
 	}
 	
 }
