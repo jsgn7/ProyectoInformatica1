@@ -73,15 +73,18 @@ public class controladorMenuSeleccionMedicos {
     @FXML
     void clickTickets(ActionEvent event) {
     	try {
-			FXMLLoader loaderTicketCl =new FXMLLoader(getClass().getResource("/vista/Visualizar_ticket_clinico.fxml"));
-			controlador_visu_ti_clinico controlTicketCl = new controlador_visu_ti_clinico();
+			FXMLLoader loaderTicketMedico =new FXMLLoader(getClass().getResource("/vista/TicketsMedico.fxml"));
+			controladorTicketMedico controlTicketMedico = new controladorTicketMedico();
 
-            loaderTicketCl.setController(controlTicketCl);
-            Parent rootTicketCl = loaderTicketCl.load();
+            loaderTicketMedico.setController(controlTicketMedico);
+            Parent rootTicketMedico = loaderTicketMedico.load();
             
             Stage stage = new Stage();
+            
+            controlTicketMedico.setMedico(this.medico);
+            controlTicketMedico.rellenarCB(this.medico);
 
-            stage.setScene(new Scene(rootTicketCl));
+            stage.setScene(new Scene(rootTicketMedico));
             stage.show();	
 		} catch(Exception e) {
 			e.printStackTrace();

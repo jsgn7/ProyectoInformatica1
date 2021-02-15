@@ -25,7 +25,7 @@ public class Paciente {
 	private String preguntaSeguridad;
 	private String respuesta;
 	private ArrayList<Integer> pulsaciones;
-	private ArrayList<String> tickets;
+	private ArrayList<Ticket> tickets;
 	private boolean ambulancia;
 	private ArrayList<Boolean> sensores;
 	private boolean respiracion;
@@ -53,7 +53,9 @@ public class Paciente {
 		sensores = sensoresAleatorios();
 		respiracion = true;
 		medico = medicoAleatorio();
-		tickets = new ArrayList<String>();
+		tickets = new ArrayList<Ticket>();
+		tickets.get(0).setMensajeMedico("Bienvenido a HelpService...");
+		tickets.get(0).setMensajePaciente("");
 		this.encargado = new Encargado();
 	}
 	
@@ -81,11 +83,11 @@ public class Paciente {
 		this.encargado = encargado;
 	}
 
-	public ArrayList<String> getTickets() {
+	public ArrayList<Ticket> getTickets() {
 		return tickets;
 	}
 
-	public void setTickets(ArrayList<String> tickets) {
+	public void setTickets(ArrayList<Ticket> tickets) {
 		this.tickets = tickets;
 	}
 

@@ -51,14 +51,11 @@ public class controladorLoginPaciente {
     	int i = 0;
     	int j = 0;
     	boolean encontrado = false;
-    	String pregunta = "";
     	while(i<medicos.size() && !encontrado) {
     		j = 0;
     		while(j<medicos.get(i).getPacientes().size() && !encontrado) {
     			if(medicos.get(i).getPacientes().get(j).getNombre().equals(usuario.getText())) {
     				encontrado = true;
-    				if(!medicos.get(i).getPacientes().get(j).getTickets().isEmpty())
-    					pregunta = medicos.get(i).getPacientes().get(j).getTickets().get( medicos.get(i).getPacientes().get(j).getTickets().size()-1);
     			}
     			j++;
     		}
@@ -72,7 +69,11 @@ public class controladorLoginPaciente {
                 loaderTicketPaciente.setController(controlTicketPaciente);
                 Parent rootTicketPaciente = loaderTicketPaciente.load();
               
+                
                 Stage stage = new Stage();
+                
+                controlTicketPaciente.setPaciente(medicos.get(i-1).getPacientes().get(j-1).getNombre());
+                controlTicketPaciente.rellenarCB(medicos.get(i-1).getPacientes().get(j-1).getNombre());
 
                 stage.setScene(new Scene(rootTicketPaciente));
                 stage.show();	
