@@ -14,16 +14,16 @@ public String respuesta;
 
 public Ticket() {}
 
-public Ticket(int tamañoLista,String DNIpaciente,String DNIdoctor,String descripcion,String respuesta) {
+public Ticket(int tamanioLista,String DNIpaciente,String DNIdoctor,String descripcion,String respuesta) {
 
-	this.codigoTicket=tamañoLista;
+	this.codigoTicket=tamanioLista;
 	this.DNIpaciente=DNIpaciente;
 	this.DNIdoctor=DNIdoctor;
 	this.descripcion=descripcion;
 	this.respuesta=respuesta;
 }
 
-// este es el Json que se generará al final
+// este es el Json que se generarï¿½ al final
 public String toString() {
 	String salida="ticket:";
 	salida="\ncodigodeTicket"+codigoTicket;

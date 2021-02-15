@@ -1,9 +1,0 @@
-[
-  {
-    "nombre": "Pedro Gonzalez",
-    "pass": "hola",
-    "preguntaSeguridad": "Color favorito",
-    "respuesta": "Verde",
-    "pacientes": ["52525252D"]
-  }
-]

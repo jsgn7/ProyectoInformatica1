@@ -71,10 +71,6 @@ public class controladorLoginPaciente {
 
                 loaderTicketPaciente.setController(controlTicketPaciente);
                 Parent rootTicketPaciente = loaderTicketPaciente.load();
-                
-                controlTicketPaciente.nombrePaciente(usuario.getText());
-                controlTicketPaciente.doctor(medicos.get(i-1).getPacientes().get(j-1).getMedico());
-                controlTicketPaciente.setPregunta(pregunta);
               
                 Stage stage = new Stage();
 

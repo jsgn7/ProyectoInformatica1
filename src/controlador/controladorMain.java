@@ -28,7 +28,7 @@ public class controladorMain {
     @FXML
     private JFXButton botonEntrar;
     
-    ObservableList<String> roles = FXCollections.observableArrayList("Medico","Paciente");
+    ObservableList<String> roles = FXCollections.observableArrayList("Medico","Paciente","Encargado");
     
     @FXML
     void entrar(ActionEvent event) {
@@ -47,7 +47,7 @@ public class controladorMain {
     		} catch(Exception e) {
     			e.printStackTrace();
     		}
-    	} else {
+    	} else if (desplegableMedicoPaciente.getSelectionModel().getSelectedItem().toString().equals("Paciente")) {
     		try {
     			FXMLLoader loaderLoginPaciente=new FXMLLoader(getClass().getResource("/vista/LoginPaciente.fxml"));
     			controladorLoginPaciente controlLoginPaciente=new controladorLoginPaciente();
@@ -60,6 +60,21 @@ public class controladorMain {
                 stage.setScene(new Scene(rootLoginPaciente));
                 stage.show();	
     		} catch(Exception e) {
+    			e.printStackTrace();
+    		}
+    	} else {
+    		try {
+    			FXMLLoader loaderLoginEncargado = new FXMLLoader(getClass().getResource("/vista/LoginEncargado.fxml"));
+    			controladorLoginEncargado controlLoginEncargado = new controladorLoginEncargado();
+
+    			loaderLoginEncargado.setController(controlLoginEncargado);
+    			Parent rootLoginEncargado = loaderLoginEncargado.load();
+            
+    			Stage stage = new Stage();
+
+    			stage.setScene(new Scene(rootLoginEncargado));
+    			stage.show();
+    		}  catch(Exception e) {
     			e.printStackTrace();
     		}
     	}
