@@ -47,15 +47,14 @@ public class Paciente {
 		this.genero = genero;
 		this.preguntaSeguridad = preguntaSeguridad;
 		this.respuesta = respuesta;
-		this.pulsaciones = pulsaciones;
+		this.pulsaciones = variacionPulsaciones(pulsaciones);
 		this.ambulancia = ambulancia;
 		this.telefono = telefono;
 		sensores = sensoresAleatorios();
-		respiracion = true;
+		respiracion = respiracionAleatoria();
 		medico = medicoAleatorio();
 		tickets = new ArrayList<Ticket>();
-		tickets.get(0).setMensajeMedico("Bienvenido a HelpService...");
-		tickets.get(0).setMensajePaciente("");
+		tickets.add(new Ticket("Bienvenido a HelpService...",""));
 		this.encargado = new Encargado();
 	}
 	
@@ -184,21 +183,31 @@ public class Paciente {
 		pulsaciones.add(pulso);
 	}
 	
+	public ArrayList<Integer> variacionPulsaciones(ArrayList<Integer> pulsaciones){
+		for (int i = 0; i < pulsaciones.size(); i++) {
+			pulsaciones.set(i, pulsaciones.get(i) + (int)Math.random() * 5000);
+		}
+		
+		return pulsaciones;
+	}
+	
 	public String medicoAleatorio() {
 		Medico medico = new Medico();
 		Vector<Medico> medicos = medico.recuperarMedicos();
-		Random random = new Random();
-		return medicos.get(random.nextInt(medicos.size())).getNombre();
+		return medicos.get((int)Math.random() * (medicos.size()-1)).getNombre();
 	}
 	
 	public ArrayList<Boolean> sensoresAleatorios(){
-		Random random = new Random();
 		ArrayList<Boolean> sensores = new ArrayList<Boolean>();
 		for(int i = 0; i<5 ; i++) {
 			sensores.add(false);
 		}
-		sensores.set(random.nextInt(sensores.size()), true);
+		sensores.set((int)Math.random() * 4, true);
 		return sensores;
+	}
+	
+	public boolean respiracionAleatoria() {
+		return Math.random()<0.5;
 	}
 	
 }
